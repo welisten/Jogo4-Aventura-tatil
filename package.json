@@ -1,0 +1,22 @@
+{
+  "name": "Jogo 4 - Aventura Tátil",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js -c-1",
+    "dev": "nodemon index.js -c-1"
+  },
+  "keywords": [],
+  "author": "Wesley Welisten Vieira",
+  "license": "ISC",
+  "dependencies": {
+    "apicache": "^1.6.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

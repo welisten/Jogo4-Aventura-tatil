@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Matemasie&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+html{
+    font-size: 62.5%;
+}
+:root{
+    --bg-dark--: #000000;
+}
+                                    /* GENERAL ELEMENTS & CLASS */
+body{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: "Moderustic", sans-serif;
+    background: var(--bg-dark--);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease;
+
+    & .container{
+        display: flex;
+    }
+    & .btn{
+        border: none;
+        cursor: pointer;
+        text-transform: capitalize;
+        outline: none;
+        border-radius: 15px;
+        transition: transform .2s ease;
+        user-select: none;
+        outline: none;
+    
+    }
+    & .btn:hover{
+        transform: scale(1.05);
+    }
+    & i{
+        font-size: 3rem;
+    }
+    & i:hover{ /*vLibras*/
+        text-decoration: none!important;
+    }
+    & a{
+        text-decoration: none;
+        color: inherit;
+    }
+    & div{
+        user-select: none;
+    }
+    & img{
+        pointer-events: none;
+        user-select: none;
+    }
+}
+                                    /* POP UP */
+                                    /* GAME_CONTAINER & GAME_CONTROLS*/
+#game_Container.inactive{
+    display: none;
+}
+#game_Container.inactive ~ .gameControls{
+    display: none;
+}
+#game_Container{
+
+}
+                                    /* BACKGROUNDS */
+
+.gameControls{
+}
+
+
+@media (max-height: 1080px){
+    html{
+        font-size: 52.5%;
+    }
+}
+@media (max-height: 720px){
+    html{
+        font-size: 42.5%;
+    }
+}
