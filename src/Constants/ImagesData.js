@@ -1,23 +1,39 @@
 const generalImgDtArr = [
     {
-        name: 'bg_ring',
-        key: 'bg ring',
-        src: '../Assets/imgs/general/bg_ring.png'
-    }
+        name: 'backgroundMountain',
+        key: 'background mountain',
+        src: '../Assets/imgs/general/backgroundMountain.svg'
+    },
+    {
+        name: 'foreground',
+        key: 'foreground',
+        src: '../Assets/imgs/general/foreground.svg'
+    },
+    {
+        name: 'frog',
+        key: 'frog',
+        src: '../Assets/imgs/general/frog.gif'
+    },
+    {
+        name: 'logo',
+        key: 'logo',
+        src: '../Assets/imgs/general/logo.png'
+    },
+    {
+        name: 'monkey_left',
+        key: 'monkey left',
+        src: '../Assets/imgs/general/monkey_left.gif'
+    },
+    {
+        name: 'monkey_right',
+        key: 'monkey right',
+        src: '../Assets/imgs/general/monkey_right.gif'
+    },
    
 ]
-// por convenção do projeto, as imgs de libras terão seu nome com letra MINÚSCULAS
 
-
-const wordsImgDtArr = [
-    {
-        name: 'ddd',
-        src: '../Assets/imgs/words/ddd.jpg'
-    },
-]
 
 
 export{
     generalImgDtArr,
-    wordsImgDtArr,
 }

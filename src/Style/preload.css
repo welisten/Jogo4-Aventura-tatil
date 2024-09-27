@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 :root{
+    --bg-dark--: #000000;
 }
 html{
     font-size: 62.5%;
@@ -11,3 +12,97 @@ html{
 body{
 
 }
+
+#loading{
+    overflow: hidden;
+    position: relative;
+    border-radius: 50%px;
+
+    & img{
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+
+    & .foreground{
+        transform: scale(1.135, 1.17);
+        border-radius: 24.1%;
+        display: none;
+        z-index: 5;
+    }
+
+    & .backgroundMountain{
+        transform: translateY(3%);
+    }
+    & .m_l{
+        height: 40%;
+        width: 40%;
+        top: 7px;
+        left: -39px;
+        z-index: 6;
+
+    }
+    & .m_r{
+        height: 30%;
+        width: 30%;
+        right: -56px;
+        top: 23px;
+        z-index: 6;
+
+    }
+    & .logo{
+        height: 49%;
+        width: 36%;
+        top: 49%;
+        left: 50%;
+        transform: translate(-50%, -57%);
+    }
+    & .frog{
+        height: 6%;
+        width: 6%;
+        transform: translate(-50%, -50%);
+        top: 79%;
+        left: 11%;
+        z-index: 4;
+    }
+}
+
+
+#loading.active img{
+    display: flex;
+}
+
+canvas{
+    position: relative;
+    z-index: 2;
+}
+/* #char_1{
+    left: 50.5%;
+    height: calc(70% * 0.6);
+}
+
+#bg_ring{
+    height: calc(70% * 0.6);
+}
+
+.logo.active::before{
+    content: '';
+    height: .5vh;
+    width:  .5vh;
+    background-color: #fffac2;
+    backdrop-filter: blur(100%);
+    position: absolute;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 5px solid #fffac2;
+    box-shadow:  0px 0px 1px 1px #f2de04,
+                 0px 0px 10px 5px #fae717,
+                 0px 0px 20px 10px #f7e952c5,
+                 0px 0px 40px 40px #faf2976b,
+                 0px 0px 120px 60px #fcf5ad3b,
+                 0px 0px 100px 100px  #fffac25b;
+
+} */

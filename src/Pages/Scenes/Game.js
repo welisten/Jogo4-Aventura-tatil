@@ -1,11 +1,8 @@
 import { gameData } from "../../Constants/gameData.js";
 import { colors } from "../../Constants/Colors.js";
-import { Alphabet } from "./Alphabet.js";
-import { Words } from "./Words.js";
-import { Explore } from "./Explore.js";
 
 
-class App {
+class Game {
     constructor(){
 
         this.element = document.querySelector('#game_Container')
@@ -343,5 +340,5 @@ class App {
 
 
 export{
-    App
+    Game
 }

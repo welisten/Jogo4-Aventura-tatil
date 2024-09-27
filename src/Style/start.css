@@ -26,17 +26,17 @@ a{
 
 }
 .button{
-    border: .25em solid var(--orange--);
+    border: .25em solid var(--green--);
     padding: 2.5vh 4vh;
-    background-color: var(--orange--);
+    background-color: var(--green--);
     font-size: clamp(1rem, 1.5rem , 2rem);
     font-weight: bold;
     border-radius: 1em;
     outline: none;
-    box-shadow:  0 0   1em  .25em var(--orange--);
+    box-shadow:  0 0   1em  .25em var(--green--);
     position: relative;
     transition: all 0.3s;
-    text-shadow: 0 0  .5em        var(--orange--);
+    text-shadow: 0 0  .5em        var(--green--);
     text-transform: uppercase;
     cursor: pointer;
 }

@@ -12,6 +12,9 @@ html{
 }
 :root{
     --bg-dark--: #000000;
+    --green-logo--: #01ab3b;
+    --green-logo--: #277000;
+    --green-lima--: #abed3f;
 }
                                     /* GENERAL ELEMENTS & CLASS */
 body{
@@ -24,6 +27,24 @@ body{
     justify-content: center;
     align-items: center;
     transition: all 1s ease;
+
+    & i{
+        font-size: 3rem;
+    }
+    & i:hover{ /*vLibras*/
+        text-decoration: none!important;
+    }
+    & a{
+        text-decoration: none;
+        color: inherit;
+    }
+    & div{
+        user-select: none;
+    }
+    & img{
+        pointer-events: none;
+        user-select: none;
+    }
 
     & .container{
         display: flex;
@@ -42,22 +63,9 @@ body{
     & .btn:hover{
         transform: scale(1.05);
     }
-    & i{
-        font-size: 3rem;
-    }
-    & i:hover{ /*vLibras*/
-        text-decoration: none!important;
-    }
-    & a{
-        text-decoration: none;
-        color: inherit;
-    }
-    & div{
-        user-select: none;
-    }
-    & img{
-        pointer-events: none;
-        user-select: none;
+    & .boundary{
+        max-width: 2560px; /*diminuir*/
+        overflow: hidden;
     }
 }
                                     /* POP UP */
