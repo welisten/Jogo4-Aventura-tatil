@@ -18,6 +18,16 @@ const audioDataArr = [
         name: 'deny',
         key: 'deny',
         src:'../Assets/songs/deny.wav'
+    },
+    {
+        name: 'frog_croaking',
+        key: 'frog croaking',
+        src:'../Assets/songs/frogCroaking.ogg'
+    },
+    {
+        name: 'theme_main',
+        key: 'theme main',
+        src:'../Assets/songs/theme.wav'
     }
 ]
 

@@ -6,17 +6,14 @@ class Game {
     constructor(){
 
         this.element = document.querySelector('#game_Container')
-        this.element.classList.add('hm')
+        this.element.classList.add('j4-hm')
        
         this.currentAudio = {config:{startTime: 0, pausedAt: 0}}
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)()//rever propriedade do obj
-        this.gainNode = this.audioContext.createGain()
+        // this.gainNode = this.audioContext.createGain()
         
-        document.title = 'Vamos Librar !'
+        document.title = ' Vamos Explorar Guapimirim!'
         gameData.mainScene = 'Game'
-
-        if(!gameData.isMute) this.gainNode.gain.value == 0
-
         
         this.setSettingsControllers()
         this.start()
@@ -54,122 +51,28 @@ class Game {
 
     start(){
         this.buildContainer()
-        this.setContainersElms()
+        // this.setContainersElms()
 
-        this.playAudio(gameAssets['positiveBlipEffect'])
+        this.playAudio(gameAssets['frog_croaking'], .5)
+        let frogTimer;
+        
         setTimeout(() =>{
-            this.playAudio(gameAssets['theme1'], .5, true)
+            this.playAudio(gameAssets['theme_main'], 0.05, true)
+            frogTimer = setInterval(() => this.playAudio(gameAssets['frog_croaking']), 6000)
             gameData.isClickable = true
         }, 1000)
     }
 
     buildContainer(){
         // CONSTRUIR HIERARQUIA E OS ELEMENTOS DA DOM REFERENTE A PAGINA HOME
-        
-        let ruleW , gContainerWidth, gcontainerHeight  ;
-
-        this.element.classList.remove('inactive')
-        
-        ruleW = window.innerWidth > 2000 ? window.innerWidth * 0.75 : window.innerWidth > 1500 ? window.innerWidth * 0.65 : window.innerWidth * 0.55
-        gContainerWidth  = Math.floor(ruleW)
-        gcontainerHeight  = window.innerHeight * .7 
-
-        this.element.style.width = `${gContainerWidth}px`
-        this.element.style.height = `${gcontainerHeight}px`
-
-        const createNewElement = (el, cl = undefined, id = undefined, src = undefined) => {
-            const element = document.createElement(el)
-
-            if(cl){
-                let clss = cl.split(' ')
-                for(let i = 0; i < clss.length; i++){
-                    element.classList.add(clss[i])
-                }
-            } 
-            if(id)  element.setAttribute('id', id);
-            if(src) element.setAttribute('src', src);
-
-            return element
-        }
-
-        const gameC_El = this.element
-        
-        const homeC_top_El = createNewElement('div', 'hm-c container top')
-        
-        const homeLogo_El= createNewElement('div', 'hm-logo')
-        const earth_img_El= createNewElement('img', 'lg-earth', undefined, "../Assets/imgs/general/earth.png")
-        const cloud1_img_El = createNewElement('img', 'lg-clouds cl-1', undefined, "../Assets/imgs/general/clouds_gif.gif")
-        const cloud2_img_El = createNewElement('img', 'lg-clouds cl-2', undefined, "../Assets/imgs/general/clouds_gif.gif")
-        
-        const homeTitle_El = createNewElement('div', 'hm-title')
-        const title_img_El = createNewElement('img', 'title', undefined, "../Assets/imgs/general/title.png")
-        
-        earth_img_El. setAttribute('alt', 'crianças dando as mãos envolta do globo terrestre')
-        cloud1_img_El. setAttribute('alt', 'nuvens se mechendo')
-        cloud2_img_El. setAttribute('alt', 'nuvens se mechendo')
-        title_img_El. setAttribute('alt', 'titulo: vamos librar')
-        
-        homeLogo_El.appendChild(earth_img_El)
-        homeLogo_El.appendChild(cloud1_img_El)
-        homeLogo_El.appendChild(cloud2_img_El)
-        homeTitle_El.appendChild(title_img_El)
-        homeC_top_El.appendChild(homeLogo_El)
-        homeC_top_El.appendChild(homeTitle_El)
-        gameC_El.appendChild(homeC_top_El)
+      
+        this.setMainContainer()
+        // this.createNewElement()
 
 
-        const homeC_bottom_El = createNewElement('div', 'hm-c container bottom')
-        
-        const menuC_El = createNewElement('div', 'hm-menu container')
-        const letterBtn_El = createNewElement('button', 'btn hm-btn', 'hm-lettersBtn')
-        const wordBtn_El = createNewElement('button', 'btn hm-btn', 'hm-wordsBtn')
-        const exploreBtn_El = createNewElement('button', 'btn hm-btn', 'hm-exploreBtn')
-
-        letterBtn_El.innerHTML = 'alfabeto'
-        wordBtn_El.innerHTML = 'palavras'
-        exploreBtn_El.innerHTML = 'explorar'
-        
-        const hand1_img_El = createNewElement('img', 'hand h-1', undefined, "../Assets/imgs/general/hand.png")
-
-        const wrapperC_El = createNewElement('div', 'wrapper')
-        const hand2_img_El = createNewElement('img', 'hand h-2', undefined, "../Assets/imgs/general/hand.png")
-
-        hand1_img_El.setAttribute('alt', 'mão referenciando a obra "A criação de Adão.')
-        hand2_img_El.setAttribute('alt', 'mão referenciando a obra "A criação de Adão.')
-        
-        menuC_El.appendChild(letterBtn_El)
-        menuC_El.appendChild(wordBtn_El)
-        menuC_El.appendChild(exploreBtn_El)
-        wrapperC_El.appendChild(hand2_img_El)
-        homeC_bottom_El.appendChild(menuC_El)
-        homeC_bottom_El.appendChild(hand1_img_El)
-        homeC_bottom_El.appendChild(wrapperC_El)
-        gameC_El.appendChild(homeC_bottom_El)
-
-        const bg_El = createNewElement('div', 'bg')
-        gameC_El.appendChild(bg_El)
     }
     setContainersElms(){
         // CONFIGURAR OS BOTÕES DO MENU E QUALQUER OUTRO ELEMENTO DA TELA
-        const letterBtn_El = document.getElementById('hm-lettersBtn')
-        const wordBtn_El = document.getElementById('hm-wordsBtn')
-        const exploreBtn_El = document.getElementById('hm-exploreBtn')
-        
-        letterBtn_El.addEventListener('click', (e) => {
-            if(!gameData.isClickable) return
-            this.stopCurrentAudio()
-            new Alphabet(this)
-        })
-        wordBtn_El.addEventListener('click', (e) => {
-            if(!gameData.isClickable) return
-            this.stopCurrentAudio()
-            new Words(this)
-        })
-        exploreBtn_El.addEventListener('click', (e) => {
-            if(!gameData.isClickable) return
-            this.stopCurrentAudio()
-            new Explore(this)
-        })
 
         this.setBtns()
     }
@@ -177,14 +80,16 @@ class Game {
 
     playAudio(audioBuffer, volume = 1.0, loop = false){   
             const src = this.audioContext.createBufferSource()
+            const gainNode = this.audioContext.createGain()
+
             src.buffer = audioBuffer
             src.loop = loop
     
-            volume = gameData.isMute === true ? 0 : 1
-            this.gainNode.gain.value = volume 
+            const vl = gameData.isMute === true ? 0 : volume
+            gainNode.gain.value = vl
             
-            src.connect(this.gainNode)
-            this.gainNode.connect(this.audioContext.destination)
+            src.connect(gainNode)
+            gainNode.connect(this.audioContext.destination)
             if(loop !== true){
                 src.start()
     
@@ -192,6 +97,8 @@ class Game {
                 src.start(0, this.currentAudio.config.startTime)
                 this.currentAudio.audio = src
             }
+            // Retorna o gainNode caso queira manipular o volume desse áudio no futuro
+            return {source: src, gainNode: gainNode}
     }
     stopCurrentAudio(){
         if(this.currentAudio.audio) {
@@ -216,6 +123,7 @@ class Game {
         gameData.isDarkMode = ! gameData.isDarkMode
     }
     toggleVolume(){
+        //ajustar - talvez ter os sons com loop armazenados em um array
         this.gainNode.gain.value == 1 ? this.gainNode.gain.value = 0 : this.gainNode.gain.value = 1
             
         muteBtn.children[0].classList.toggle('fa-volume-xmark')
@@ -229,7 +137,6 @@ class Game {
         this.element.appendChild(access)
         this.element.className = classStr
     }
-
     getImage(key){
         return gameAssets[key]
     }
@@ -335,6 +242,17 @@ class Game {
         if(src) element.setAttribute('src', src);
 
         return element
+    }
+    setMainContainer(){
+        let gContainerWidth, gcontainerHeight  ;
+
+        this.element.classList.remove('inactive')
+        
+        gContainerWidth  = window.screen.width * 0.40        
+        gcontainerHeight  = window.screen.height * 0.613
+
+        this.element.style.width = `${gContainerWidth}px`
+        this.element.style.height = `${gcontainerHeight}px`
     }
 }
 

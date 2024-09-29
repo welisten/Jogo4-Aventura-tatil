@@ -12,7 +12,6 @@ html{
 body{
 
 }
-
 #loading{
     overflow: hidden;
     position: relative;
@@ -26,15 +25,15 @@ body{
     }
 
     & .foreground{
-        transform: scale(1.135, 1.17);
-        border-radius: 24.1%;
+        border-radius: 13px;
         display: none;
-        z-index: 5;
+        z-index: 4;
+        transform: scale(0.983, 0.97);
+        top: -1px;
+        object-fit: cover;
+        object-position: bottom;
     }
 
-    & .backgroundMountain{
-        transform: translateY(3%);
-    }
     & .m_l{
         height: 40%;
         width: 40%;
@@ -56,13 +55,13 @@ body{
         width: 36%;
         top: 49%;
         left: 50%;
-        transform: translate(-50%, -57%);
+        transform: translate(-50%, -50%);
     }
     & .frog{
         height: 6%;
         width: 6%;
         transform: translate(-50%, -50%);
-        top: 79%;
+        top: 74.7%;
         left: 11%;
         z-index: 4;
     }

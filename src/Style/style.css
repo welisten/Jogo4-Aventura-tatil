@@ -15,6 +15,7 @@ html{
     --green-logo--: #01ab3b;
     --green-logo--: #277000;
     --green-lima--: #abed3f;
+    --green-tr4--:rgba(3, 178, 15, 0.5);
 }
                                     /* GENERAL ELEMENTS & CLASS */
 body{
@@ -66,6 +67,10 @@ body{
     & .boundary{
         max-width: 2560px; /*diminuir*/
         overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        align-items: center;
+        justify-content: center;
     }
 }
                                     /* POP UP */
@@ -77,9 +82,110 @@ body{
     display: none;
 }
 #game_Container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 10px solid var(--green-logo--);
+    border-radius: 20px;
+    background: var(--black--);
+    margin: 0 2rem;
 
+    .gameControls{
+        position: absolute;
+        right: -12vh;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 70%;
+        width: 10vh;
+    
+        & .btn.controls{
+            margin: 2rem;
+            padding: 1.5rem;
+            color: #fff;
+            background-color: var(--green-lima--);
+        }
+
+    }
 }
                                     /* BACKGROUNDS */
+.j4-bg{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: url('./../Assets/imgs/general/hm_background.png');
+    border-radius: 10px;
+    box-sizing: content-box;
+    overflow: hidden;
+
+    & .foreground{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        border-radius: 13px;
+        transform: scale(1.003);
+        object-fit: cover;
+        object-position: bottom;
+    }
+    
+    & .monkey{
+        position: absolute;
+        top: 0;
+    }
+        
+    & .m_l{
+        height: 40%;
+        width: 40%;
+        top: 7px;
+        left: -39px;
+        z-index: 6;
+
+    }
+    & .m_r{
+        height: 30%;
+        width: 30%;
+        right: -56px;
+        top: 23px;
+        z-index: 6;
+
+    }
+}
+                                    /* HOME */
+#game_Container #home{
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+
+    justify-content: center;
+    align-items: center;
+    
+    & .hm-container{
+        border: 1px solid white;
+        height: 70%;
+        width: 30%;
+        background-color: rgba(255, 255, 255, .4);
+        border-radius: 10px;
+
+        flex-direction: column;
+        align-items: center;
+
+        & .hm-c-title{
+            background-color: rgba(3, 178, 15, 0.5);
+            height: 12%;
+            width: 80%;
+            text-align: center;
+            color: white;
+            border: 4px solid white;
+            border-radius: 10px;
+            margin: 10% 0;
+        }
+    }
+
+}
+                                    
 
 .gameControls{
 }

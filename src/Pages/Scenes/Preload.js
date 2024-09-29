@@ -24,11 +24,13 @@ class Preloader{
     }
 
     setPreloader(){
-        let ruleW = window.innerWidth > 2000 ? window.innerWidth * 0.40 : window.innerWidth > 1500 ? window.innerWidth * 0.65 : window.innerWidth * 0.55
+        const gContainerWidth  = window.screen.width * 0.40      
+        const gcontainerHeight  = window.screen.height * 0.613
 
-        const gContainerWidth  = Math.floor(ruleW)
-        const gcontainerHeight  = window.innerHeight * 0.7
         const parent = document.querySelector('#loading')
+        parent.style.width = gContainerWidth
+        parent.style.height = gcontainerHeight
+        
         const config = {
             type: Phaser.AUTO,
             width: gContainerWidth,
@@ -39,8 +41,8 @@ class Preloader{
                 preload: this.preload,
             }
         }
-
-        this.phaserGame = new Phaser.Game(config)               //**
+        const frogSound = document.querySelector('#frogCroaking')
+        this.phaserGame = new Phaser.Game(config)               
     }
     preload(){
         const gameCanvas = this.sys.game.canvas
@@ -53,11 +55,8 @@ class Preloader{
         window.gameAssets = {}
         store = window.gameAssets
 
-        let ruleW = window.innerWidth > 2000 ? window.innerWidth * 0.40 : window.innerWidth > 1500 ? window.innerWidth * 0.65 : window.innerWidth * 0.55
-
-        const gContainerWidth  = Math.floor(ruleW)        
-        // const gcontainerHeight  = window.innerHeight * 0.7
-        const gcontainerHeight  = window.screen.height * 0.65
+        const gContainerWidth  = window.screen.width * 0.40        
+        const gcontainerHeight  = window.screen.height * 0.613
 
         const progressBar = this.add.graphics()
         const progressBox = this.add.graphics()
@@ -106,19 +105,18 @@ class Preloader{
                 criarObjeto(store, dataObj.name, getImage(dataObj.name))
             }
 
-            // this.time.delayedCall(1000, () => {
-            //     progressBar.destroy()
-            //     progressBox.destroy()
-            //     loadingText.destroy()
+            this.time.delayedCall(1000, () => {
+                progressBar.destroy()
+                progressBox.destroy()
 
-            //     logoContainer.classList.toggle('active')
-            //     logoContainer.parentNode.remove()
-            //     gameCanvas.remove()
+                loadingContainer.classList.toggle('active')
+                loadingContainer.remove()
+                gameCanvas.remove()
                 
-            //     gameData.mainClass = 'App'
-            //     console.clear()
-            //     new App()
-            // })
+                gameData.mainClass = 'Game'
+                console.clear()
+                new Game()
+            })
         })
 
         for(let dataObj of generalImgDtArr){
