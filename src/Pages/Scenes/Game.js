@@ -51,11 +51,12 @@ class Game {
 
     start(){
         this.buildContainer()
-        // this.setContainersElms()
+        this.buildBg()
+        this.setContainersElms()
 
-        this.playAudio(gameAssets['frog_croaking'], .5)
-        let frogTimer;
-        
+        this.playAudio(gameAssets['frog_croaking'], .1)
+       
+        let frogTimer; 
         setTimeout(() =>{
             this.playAudio(gameAssets['theme_main'], 0.05, true)
             frogTimer = setInterval(() => this.playAudio(gameAssets['frog_croaking']), 6000)
@@ -64,19 +65,85 @@ class Game {
     }
 
     buildContainer(){
-        // CONSTRUIR HIERARQUIA E OS ELEMENTOS DA DOM REFERENTE A PAGINA HOME
-      
         this.setMainContainer()
-        // this.createNewElement()
 
+        const main = document.querySelector('#main')
+
+        const hmContainer = this.createNewElement('div', 'hm-container container')
+        const hm_c_title = this.createNewElement('div', 'hm-c-title container')
+        const hm_title = this.createNewElement('p')
+
+        hm_title.innerHTML = 'Vamos Explorar !'
+
+        hm_c_title.appendChild(hm_title)
+        hmContainer.appendChild(hm_c_title)
+
+        const hmTable = this.createNewElement('table', 'hm-table')
+        const hmThead = this.createNewElement('thead', 'hm-thead')
+        const hmTh = this.createNewElement('th', 'hm-t')
+        
+        hmTh.innerHTML = 'escolha o local :'
+        hmThead.appendChild(hmTh)
+
+        const hmTbody = this.createNewElement('tbody', 'hm-tbody')
+        const hmTr1 = this.createNewElement('tr', 'hm-tr')
+        const hmTd1 = this.createNewElement('td', 'hm-td')
+        
+        hmTd1.innerHTML = 'concordia'
+        hmTr1.appendChild(hmTd1)
+
+        const hmTr2 = this.createNewElement('tr', 'hm-tr')
+        const hmTd2 = this.createNewElement('td', 'hm-td')
+        
+        hmTd2.innerHTML = 'apa'
+        hmTr2.appendChild(hmTd2)
+
+        hmTbody.append(hmTr1, hmTr2)
+        hmTable.append(hmThead, hmTbody)
+        
+        hmContainer.appendChild(hmTable)
+        main.appendChild(hmContainer)
 
     }
     setContainersElms(){
         // CONFIGURAR OS BOTÕES DO MENU E QUALQUER OUTRO ELEMENTO DA TELA
+        const cPointsArr = document.querySelectorAll('.hm-td')
+        let txContent;
 
+        cPointsArr.forEach( point => {
+            point.addEventListener('click', (e) => {
+                txContent = e.target.textContent 
+                switch(txContent){
+                    case 'concordia':
+                        console.log('concordia é longe')
+                        break;
+                    case 'apa':
+                        console.log('apa ?? nunca fui')
+                        break;
+                }
+
+            })
+           
+        })
         this.setBtns()
     }
+    setMainContainer(){
+        let  ruleW, gContainerWidth, gcontainerHeight  ;
 
+        this.element.classList.remove('inactive')
+        ruleW = window.screen.width > 2000 ? window.screen.width * 0.4  : window.screen.width > 1500 ? window.screen.width * 0.6 : window.screen.width * 0.5
+        gContainerWidth  = window.screen.width * 0.40        
+        gcontainerHeight  = window.screen.height * 0.613
+
+        this.element.style.width = `${ruleW}px`
+        this.element.style.height = `${gcontainerHeight}px`
+    }
+    resetContainerToNewScene(clss = undefined){
+        const main = document.querySelector('#main')
+
+        main.innerHTML = " "
+        if (clss)  this.element.className = clss;
+    }
 
     playAudio(audioBuffer, volume = 1.0, loop = false){   
             const src = this.audioContext.createBufferSource()
@@ -131,30 +198,23 @@ class Game {
 
         gameData.isMute = !gameData.isMute
     }
-    resetContainerToNewScene(classStr = ''){
-        const access = document.querySelector('.access')
-        this.element.innerHTML = " "
-        this.element.appendChild(access)
-        this.element.className = classStr
-    }
+
     getImage(key){
         return gameAssets[key]
     }
-    setBtns(element = document){
-        let btns = element.querySelectorAll('.btn')
-        let h_aux = false;
-        btns.forEach((btn) => {
-            btn.addEventListener('mouseenter', () => {
-                if(!h_aux){
-                    h_aux = !h_aux
-                   if(element === document) this.playAudio(gameAssets['btn_select'])
-                }
-            })
+    createNewElement(el, cl = undefined, id = undefined, src = undefined){
+        const element = document.createElement(el)
 
-            btn.addEventListener('mouseout', () => {
-                h_aux = false
-            })
-        })
+        if(cl){
+            let clss = cl.split(' ')
+            for(let i = 0; i < clss.length; i++){
+                element.classList.add(clss[i])
+            }
+        } 
+        if(id)  element.setAttribute('id', id);
+        if(src) element.setAttribute('src', src);
+
+        return element
     }
     popUpMessage(message, delay = 3500){   // EXIBE MENSAGEM NO POPUP VISÍVEL
         gameData.isClickable = false
@@ -175,45 +235,34 @@ class Game {
         }, delay)
     }
     buildBg(){
-        const backgroudGifsEl = this.createNewElement('div', "container bg-gifs")
-       
-        const bg_cloud1 = this.getImage('clouds_gif1')
-        bg_cloud1.setAttribute('src', './../../Assets/imgs/general/clouds_gif.gif')
-        bg_cloud1.setAttribute('alt', 'nuvens')
-        bg_cloud1.setAttribute('class', 'bg-gifs-clouds bg-c1')
-        
-        const bg_cloud2 = this.getImage('clouds_gif2')
-        bg_cloud2.setAttribute('src', './../Assets/imgs/general/clouds_gif.gif')
-        bg_cloud2.setAttribute('alt', 'nuvens')
-        bg_cloud2.setAttribute('class', 'bg-gifs-clouds bg-c2')
-       
-        const bg_sun = this.getImage('sun_gif')  
-        bg_sun.setAttribute('src','./../Assets/imgs/general/sun_gif.gif')
-        bg_sun.setAttribute('alt','sol')
-        bg_sun.setAttribute('class','bg-gifs-sun')
+        const bg = document.querySelector('#j4-bg')
 
-        const bg_home = this.getImage('home_gif')  
-        bg_home.setAttribute('src','./../Assets/imgs/general/home_gif.gif')
-        bg_home.setAttribute('alt','home')
-        bg_home.setAttribute('class','bg-gifs-home')
+        const foreground = this.getImage('foreground')
+        foreground.className = "foreground svg"
+        foreground.setAttribute('alt', "floresta com arvores, troncos, planices")
+
+        const monkeyLeft = this.getImage('monkey_left')
+        monkeyLeft.className = "m_l monkey"
+        monkeyLeft.setAttribute('alt', 'macaco pendurado no cipó')
+
+        const monkeyRight = this.getImage('monkey_right')
+        monkeyRight.className = "m_r monkey"
+        monkeyRight.setAttribute('alt', 'macaco pendurado no galho')
+
+        const homeGif = this.getImage('home_gif')
+        homeGif.className = "homeGif"
+        homeGif.setAttribute('alt', 'casa')
 
         const homeBtnEl = this.createNewElement('button', 'btn bg-homeBtn', 'homeBtn')
-        
-        homeBtnEl.addEventListener('click', () => {
-            if(!gameData.isClickable) return
-            const accessBtn = document.querySelector('[vw-access-button]')
-            
-            let OR_rule = (gameData.mainScene === 'Words' || gameData.mainScene === 'Explore' )
-            
-            if( OR_rule && !accessBtn.classList.contains('active')){
-                this.popUpMessage('aperte o "X" vermelho para fechar a aplicação', 2000)
-                // função para indicar x
-                return
-            }
-            this.stopCurrentAudio()
-            this.resetContainerToNewScene('hm')
-            gameData.mainScene = 'Game'
+        homeBtnEl.appendChild(homeGif)
 
+        homeBtnEl.addEventListener('click', () => {
+            if(!gameData.isClickable && gameData.mainScene === 'Game') return
+            
+            this.stopCurrentAudio()
+
+            this.resetContainerToNewScene('j4-hm')
+            gameData.mainScene = 'Game'
             this.start()
         })
 
@@ -221,38 +270,34 @@ class Game {
             this.playAudio(gameAssets['btn_select'])
         })
 
-        homeBtnEl.appendChild(bg_home)
-        backgroudGifsEl.appendChild(bg_cloud1)
-        backgroudGifsEl.appendChild(bg_cloud2)
-        backgroudGifsEl.appendChild(bg_sun)
-        backgroudGifsEl.appendChild(homeBtnEl)
-
-        document.getElementById('game_Container').appendChild(backgroudGifsEl)
+        bg.append(foreground, monkeyLeft, monkeyRight, homeBtnEl)
     }
-    createNewElement(el, cl = undefined, id = undefined, src = undefined){
-        const element = document.createElement(el)
-
-        if(cl){
-            let clss = cl.split(' ')
-            for(let i = 0; i < clss.length; i++){
-                element.classList.add(clss[i])
-            }
-        } 
-        if(id)  element.setAttribute('id', id);
-        if(src) element.setAttribute('src', src);
-
-        return element
-    }
-    setMainContainer(){
-        let gContainerWidth, gcontainerHeight  ;
-
-        this.element.classList.remove('inactive')
+    toggleBgDisplay(){
+        const j4_bg = document.querySelector('#j4-bg')
         
-        gContainerWidth  = window.screen.width * 0.40        
-        gcontainerHeight  = window.screen.height * 0.613
+        let bgDisplay = j4_bg.style.display
 
-        this.element.style.width = `${gContainerWidth}px`
-        this.element.style.height = `${gcontainerHeight}px`
+        if(bgDisplay === 'none'){
+            j4_bg.style.display = 'block'
+        } else {
+             j4_bg.style.display = 'none'
+        }
+    }
+    setBtns(element = document){
+        let btns = element.querySelectorAll('.btn')
+        let h_aux = false;
+        btns.forEach((btn) => {
+            btn.addEventListener('mouseenter', () => {
+                if(!h_aux){
+                    h_aux = !h_aux
+                   if(element === document) this.playAudio(gameAssets['btn_select'])
+                }
+            })
+
+            btn.addEventListener('mouseout', () => {
+                h_aux = false
+            })
+        })
     }
 }
 

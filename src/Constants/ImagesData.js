@@ -29,6 +29,11 @@ const generalImgDtArr = [
         key: 'monkey right',
         src: '../Assets/imgs/general/monkey_right.gif'
     },
+    {
+        name: 'home_gif',
+        key: 'home gif',
+        src: '../Assets/imgs/general/home_gif.gif'
+    }
    
 ]
 
