@@ -16,6 +16,7 @@ html{
     --green-logo--: #277000;
     --green-lima--: #abed3f;
     --green-tr4--:rgba(3, 178, 15, 0.5);
+    --orange--:rgb(255, 97, 5);
 }
                                     /* GENERAL ELEMENTS & CLASS */
 body{
@@ -75,13 +76,13 @@ body{
 }
                                     /* POP UP */
                                     /* GAME_CONTAINER & GAME_CONTROLS*/
-#game_Container.inactive{
+#game_container.inactive{
     display: none;
 }
-#game_Container.inactive ~ .gameControls{
+#game_container.inactive ~ .gameControls{
     display: none;
 }
-#game_Container{
+#game_container{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -92,7 +93,7 @@ body{
 
     .gameControls{
         position: absolute;
-        right: -12vh;
+        right: -14vh;
         top: 50%;
         transform: translateY(-50%);
         display: flex;
@@ -104,9 +105,13 @@ body{
     
         & .btn.controls{
             margin: 2rem;
-            padding: 1.5rem;
+            padding: 2vh;
             color: #fff;
             background-color: var(--green-lima--);
+
+            & i{
+                font-size: 2.1rem;
+            }
         }
 
     }
@@ -116,10 +121,21 @@ body{
     position: absolute;
     height: 100%;
     width: 100%;
-    background: url('./../Assets/imgs/general/hm_background.png');
     border-radius: 10px;
     box-sizing: content-box;
     overflow: hidden;
+
+    & .j4-bg-bg{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        border-radius: 10px;
+        background-image: url('./../Assets/imgs/general/hm_background.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+
+    }
 
     & .foreground{
         position: absolute;
@@ -133,6 +149,7 @@ body{
     
     & .monkey{
         position: absolute;
+        display: block;
         top: 0;
     }
         
@@ -165,8 +182,149 @@ body{
         }
     }
 }
+.j4-sgt{
+    transition: all 1s ease;
+    
+    & .j4-bg{
+        transition: all 1s ease;
+        
+        & .monkey{
+            display: none;
+        }
+    }
+    & .j4-bg-bg.blur{
+        transition: all 1s ease;
+        filter: blur(10px);
+    }
+    & .j4-bg-bg.blur ~ img{
+        transition: all 1s ease;
+        filter: drop-shadow(2px 4px 6px black)
+    }
+
+    & #main{
+        height: 100%;
+        width: 100%;
+
+        & .sgt-container{
+            height: 100%;
+            width: 100%;
+            position: relative;
+            justify-content: center;    
+            align-items: center;
+            flex-direction: column;
+    
+            & .spot{
+                position: absolute;
+                width: 8vh;
+                height: 8vh;
+                max-height: 80px;
+                max-width: 80px;
+                background-color: #ffffff5e;
+                border: 4px solid var(--green-lima--);
+                border: 4px solid var(--orange--);
+                border-radius: 50%;
+                z-index: 1;
+            }
+            & .stg-card{
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                height: 82%;
+                width: 32%;
+                border: 1px solid white;
+                border-radius: 15px;
+                z-index: 1;
+                background-color: #ffffff5c;
+                filter: drop-shadow(2px 4px 6px black);
+                & .card-close.btn{
+                    height: 3rem;
+                    width: 3rem;
+                    position: absolute;
+                    top: -2%;
+                    right: -23%;
+                    border: 1px solid;
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #ec0404;
+                    color: #fff;
+                    z-index: 10;
+
+                    & i{
+                        font-size: 2.5rem;
+                        line-height: 90%;
+                    }
+                }
+
+                & .stg-card-title{
+                    height: 40%;
+                    width: 95%;
+                    max-width: 95%;
+                    border: 1px solid white;
+                    border-radius: 15px;
+                    margin: 2.5%;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+
+                    & img{
+                        width: 100%;
+                    }
+                }
+
+                & .stg-card-body{
+                    height: 59%;
+                    width: 95%;
+                    max-width: 95%;
+                    border: 1px solid white;
+                    border-radius: 15px;
+                    margin: 0 2.5% 2.5%;
+                    padding: 2.5% 2.5%;
+                    font-size: clamp(1.2rem, 1.4rem, 1.6rem);
+                    text-align: center;
+                    font-weight: 300;
+                    color: white;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+
+                    & .card-play.btn{
+                        height: 3rem;
+                        width: 3rem;
+                        position: absolute;
+                        top: -15%;
+                        left: 9%;
+                        border: 1px solid;
+                        border-radius: 50%;
+                        transform: translate(-50%, -50%);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #ffffff63;
+                        color: #000;
+                        z-index: 10;
+          
+
+                        & i{
+                            font-size: 2rem;
+                            transform: translate(10%, 10%);
+                        }
+                    }
+                }
+
+                & .stg-card-footer{
+                    position: relative;
+                }
+            
+            }
+        }
+    }
+}
                                     /* HOME */
-#game_Container #main{
+.j4-hm #main{
     height: 100%;
     width: 100%;
     z-index: 10;
@@ -197,8 +355,7 @@ body{
             align-items: center;
 
             & p{
-                font-size: 2rem;
-                font-size: clamp(1.8rem, 2.4rem, 3rem);
+                font-size: clamp(1.8rem, 2rem, 2.5rem);
                 text-transform: uppercase;
                 font-weight: bold;
             }
@@ -235,7 +392,7 @@ body{
                 align-items: center;
                 justify-content: flex-start;
                 padding: 0 8%;
-                overflow-y: scroll;
+                overflow: hidden;
 
                 & tr{
                     height: 20%;
@@ -250,7 +407,7 @@ body{
                     position: relative;
                     top: 50%;
                     transform: translateY(-50%);
-                    font-size: clamp(2rem, 3rem, 4rem);
+                    font-size: clamp(1.8rem, 2rem, 2.5rem);
                     cursor: pointer;
                     text-transform: uppercase;
                     font-weight: bold;
@@ -276,6 +433,13 @@ body{
               }
         }
     }
+
+    
+}
+
+
+
+#game_container .j4-sgt{
 
 }
                                     

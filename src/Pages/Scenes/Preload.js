@@ -4,7 +4,7 @@ import { Game } from "./Game.js";
 import { gameData } from "../../Constants/gameData.js";
 
 // ASSETS DATA
-import { generalImgDtArr} from "../../Constants/ImagesData.js";
+import { generalImgDtArr, animalsImgDtArr} from "../../Constants/ImagesData.js";
 import { audioDataArr } from "../../Constants/songsData.js";
 
 // CONSTANTS
@@ -24,7 +24,8 @@ class Preloader{
     }
 
     setPreloader(){
-        const gContainerWidth  = window.screen.width * 0.40      
+        let ruleW = window.screen.width > 2000 ? window.screen.width * 0.4  : window.screen.width > 1500 ? window.screen.width * 0.65 : window.screen.width * 0.60
+        const gContainerWidth  = `${ruleW}px`     
         const gcontainerHeight  = window.screen.height * 0.613
 
         const parent = document.querySelector('#loading')
@@ -41,12 +42,17 @@ class Preloader{
                 preload: this.preload,
             }
         }
-        const frogSound = document.querySelector('#frogCroaking')
         this.phaserGame = new Phaser.Game(config)               
     }
     preload(){
         const gameCanvas = this.sys.game.canvas
+        let ruleW = window.screen.width > 2000 ? window.screen.width * 0.4  : window.screen.width > 1500 ? window.screen.width * 0.65 : window.screen.width * 0.6
+        ruleW = window.screen.width > 2000 ? window.screen.width * 0.4  : window.screen.width > 1500 ? window.screen.width * 0.65 : window.screen.width * 0.6
 
+        
+        const gContainerWidth  = ruleW        
+        const gcontainerHeight  = window.screen.height * 0.613
+        
         gameCanvas.id                       = 'jogo4_canvas'
         gameCanvas.style.border             = `10px solid ${colors.green_logo__1}`;
         gameCanvas.style.borderRadius       = "20px"
@@ -54,9 +60,6 @@ class Preloader{
         // os assets devem ser armazenado no navegador
         window.gameAssets = {}
         store = window.gameAssets
-
-        const gContainerWidth  = window.screen.width * 0.40        
-        const gcontainerHeight  = window.screen.height * 0.613
 
         const progressBar = this.add.graphics()
         const progressBox = this.add.graphics()
@@ -104,6 +107,9 @@ class Preloader{
             for(let dataObj of generalImgDtArr){
                 criarObjeto(store, dataObj.name, getImage(dataObj.name))
             }
+            for(let dataObj of animalsImgDtArr){
+                criarObjeto(store, dataObj.name, getImage(dataObj.name))
+            }
 
             this.time.delayedCall(1000, () => {
                 progressBar.destroy()
@@ -120,6 +126,10 @@ class Preloader{
         })
 
         for(let dataObj of generalImgDtArr){
+            this.load.image(dataObj.name, dataObj.src)
+        }
+
+        for(let dataObj of animalsImgDtArr){
             this.load.image(dataObj.name, dataObj.src)
         }
 

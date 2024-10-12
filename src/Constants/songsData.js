@@ -28,7 +28,67 @@ const audioDataArr = [
         name: 'theme_main',
         key: 'theme main',
         src:'../Assets/songs/theme.wav'
-    }
+    },
+    {
+        name: 'coruja-do-mato-sound',
+        key: 'coruja do mato',
+        src:'../Assets/songs/animals/coruja-do-mato.mp3'
+    },
+    {
+        name: 'jacutinga-sound',
+        key: 'jacutinga',
+        src:'../Assets/songs/animals/jacutinga.mp3'
+    },
+    {
+        name: 'mico-leao-dourado-sound',
+        key: 'mico leao dourado',
+        src:'../Assets/songs/animals/mico-leao-dourado.mp3'
+    },
+    {
+        name: 'quati-sound',
+        key: 'quati',
+        src:'../Assets/songs/animals/quati.mp3'
+    },
+    {
+        name: 'ra-assobiadora-sound',
+        key: 'ra assobiadora',
+        src:'../Assets/songs/animals/ra-assobiadora.mp3'
+    },
+    {
+        name: 'tucano-de-bico-preto-sound',
+        key: 'tucano de bico preto',
+        src:'../Assets/songs/animals/tucano-de-bico-preto.mp3'
+    },
+    {
+        name: 'muriqui-sound',
+        key: 'muriqui',
+        src:'../Assets/songs/animals/muriqui.mp3'
+    },
+    {
+        name: 'perereca-verde-sound',
+        key: 'perereca verde',
+        src:'../Assets/songs/animals/perereca-verde.weba'
+    },
+    {
+        name: 'sabia-laranjeira-sound',
+        key: 'sabia laranjeira',
+        src:'../Assets/songs/animals/sabia-laranjeira.mp3'
+    },
+    {
+        name: 'boto-cinza-sound',
+        key: 'boto cinza',
+        src:'../Assets/songs/animals/boto-cinza.mp3'
+    },
+    {
+        name: 'tatu-galinha-sound',
+        key: 'tatu galinha',
+        src:'../Assets/songs/animals/tatu-galinha.mp3'
+    },
+    {
+        name: 'onca-parda',
+        key: 'onca parda',
+        src:'../Assets/songs/animals/onca-parda.mp3'
+    },
 ]
 
 export {

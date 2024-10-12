@@ -6,6 +6,7 @@ const gameData = {
     isLibrasActive: false,
     isPaused: false,
     isClickable: false,
+    isPlayingSound: false,
     lastAccText: '',
     mainScene: 'Preload',
     wereVLibrasActived: false

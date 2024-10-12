@@ -13,7 +13,6 @@ body{
 
 }
 #loading{
-    overflow: hidden;
     position: relative;
     border-radius: 50%px;
 
@@ -29,9 +28,11 @@ body{
         display: none;
         z-index: 4;
         transform: scale(0.983, 0.97);
-        top: -1px;
+        top: 0;
+        left: 0;
         object-fit: cover;
         object-position: bottom;
+        width: calc(100% + 20px);
     }
 
     & .m_l{

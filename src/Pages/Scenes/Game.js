@@ -1,17 +1,27 @@
 import { gameData } from "../../Constants/gameData.js";
 import { colors } from "../../Constants/Colors.js";
+import { Sights } from "./Sights.js";
 
 
 class Game {
     constructor(){
 
-        this.element = document.querySelector('#game_Container')
+        this.element = document.querySelector('#game_container')
         this.element.classList.add('j4-hm')
        
-        this.currentAudio = {config:{startTime: 0, pausedAt: 0}}
+        this.currentAudio = {
+            default: {
+                config:{startTime: 0, pausedAt: 0},
+                audio: undefined,
+                // context: new (window.AudioContext || window.webkitAudioContext)()
+
+            },
+        }
+        this.auxAudioaAmt = 0
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)()//rever propriedade do obj
         // this.gainNode = this.audioContext.createGain()
-        
+        this.frogTimer = undefined
+
         document.title = ' Vamos Explorar Guapimirim!'
         gameData.mainScene = 'Game'
         
@@ -49,17 +59,16 @@ class Game {
         }
     }
 
-    start(){
+    start(restart = false){
         this.buildContainer()
-        this.buildBg()
+        if (!restart) this.buildBg()
         this.setContainersElms()
 
-        this.playAudio(gameAssets['frog_croaking'], .1)
-       
-        let frogTimer; 
+        this.playAudio(gameAssets['frog_croaking'], 'frog_croaking', .1)
+        
         setTimeout(() =>{
-            this.playAudio(gameAssets['theme_main'], 0.05, true)
-            frogTimer = setInterval(() => this.playAudio(gameAssets['frog_croaking']), 6000)
+            this.playAudio(gameAssets['theme_main'], 'theme_main', 0.05, true)
+            this.frogTimer = setInterval(() => this.playAudio(gameAssets['frog_croaking'], 'frog_croaking', .1), 6000)
             gameData.isClickable = true
         }, 1000)
     }
@@ -115,37 +124,49 @@ class Game {
                 txContent = e.target.textContent 
                 switch(txContent){
                     case 'concordia':
-                        console.log('concordia é longe')
+
+                        this.resetContainerToNewScene()
+                        new Sights(this, 'concordia')
                         break;
+
                     case 'apa':
-                        console.log('apa ?? nunca fui')
+
+                        this.resetContainerToNewScene()
+                        new Sights(this, 'apa')
+                        break;
+
+                    default:
+
+                        console.log('fase inexistente')
                         break;
                 }
 
             })
            
         })
+
         this.setBtns()
     }
     setMainContainer(){
         let  ruleW, gContainerWidth, gcontainerHeight  ;
 
         this.element.classList.remove('inactive')
-        ruleW = window.screen.width > 2000 ? window.screen.width * 0.4  : window.screen.width > 1500 ? window.screen.width * 0.6 : window.screen.width * 0.5
+        ruleW = window.screen.width > 2000 ? window.screen.width * 0.4  : window.screen.width > 1500 ? window.screen.width * 0.65 : window.screen.width * 0.6
         gContainerWidth  = window.screen.width * 0.40        
         gcontainerHeight  = window.screen.height * 0.613
 
         this.element.style.width = `${ruleW}px`
         this.element.style.height = `${gcontainerHeight}px`
     }
-    resetContainerToNewScene(clss = undefined){
+    resetContainerToNewScene(clss = ""){
         const main = document.querySelector('#main')
 
         main.innerHTML = " "
-        if (clss)  this.element.className = clss;
+        this.element.className = clss;
+        this.stopCurrentAudio()
     }
 
-    playAudio(audioBuffer, volume = 1.0, loop = false){   
+    playAudio(audioBuffer, audioName = undefined, volume = 1.0, loop = false ){   
             const src = this.audioContext.createBufferSource()
             const gainNode = this.audioContext.createGain()
 
@@ -157,23 +178,41 @@ class Game {
             
             src.connect(gainNode)
             gainNode.connect(this.audioContext.destination)
-            if(loop !== true){
+            if(loop === false){
                 src.start()
     
             } else {
-                src.start(0, this.currentAudio.config.startTime)
-                this.currentAudio.audio = src
+                if(audioName in this.currentAudio){
+                    src.start(0, this.currentAudio[audioName].config.startTime)
+                    this.currentAudio[audioName].audio = src
+                } else {
+                    src.start(0, 0)
+                    this.currentAudio[audioName] = {config:{startTime: 0, pausedAt: undefined, gainNode: gainNode}}
+                    this.currentAudio[audioName].audio = src
+                }
+
+
+    
             }
             // Retorna o gainNode caso queira manipular o volume desse áudio no futuro
             return {source: src, gainNode: gainNode}
     }
     stopCurrentAudio(){
-        if(this.currentAudio.audio) {
-            this.currentAudio.config.startTime = this.audioContext.currentTime
-            this.currentAudio.audio.stop()
-            this.currentAudio.audio = null
-        }
+            for( let sound in this.currentAudio){
+                this.currentAudio[sound].config.startTime = 0
+                if(this.currentAudio[sound].audio){
+                    let pausedAt = this.currentAudio[sound].audio.context.currentTime
+
+                    this.currentAudio[sound].audio.stop()
+                    this.currentAudio[sound].config.pausedAt = pausedAt
+                }
+                if(this.frogTimer) {
+                    clearInterval(this.frogTimer)
+                    this.frogTimer = undefined
+                }
+            }
     }
+
     toggleLightMode(){
         let btn = document.getElementById('lightBtn')
 
@@ -190,8 +229,16 @@ class Game {
         gameData.isDarkMode = ! gameData.isDarkMode
     }
     toggleVolume(){
-        //ajustar - talvez ter os sons com loop armazenados em um array
         this.gainNode.gain.value == 1 ? this.gainNode.gain.value = 0 : this.gainNode.gain.value = 1
+        for(let audio in this.currentAudio){
+            
+           
+           
+            
+            
+            this.currentAudio[audio]
+        }
+            
             
         muteBtn.children[0].classList.toggle('fa-volume-xmark')
         muteBtn.children[0].classList.toggle('fa-volume-high')
@@ -222,7 +269,7 @@ class Game {
         const popUp = document.getElementById('popUpMessage')
         const popupText = document.querySelector('.popupText')
         
-        this.playAudio(gameAssets['deny'])
+        this.playAudio(gameAssets['deny'], 'deny')
         popUp.style.top = `0`
         popupText.children[0].textContent = message
     
@@ -235,7 +282,9 @@ class Game {
         }, delay)
     }
     buildBg(){
-        const bg = document.querySelector('#j4-bg')
+        const j4_bg = document.querySelector('#j4-bg')
+
+        const bgEle = this.createNewElement('div', 'j4-bg-bg')
 
         const foreground = this.getImage('foreground')
         foreground.className = "foreground svg"
@@ -258,19 +307,19 @@ class Game {
 
         homeBtnEl.addEventListener('click', () => {
             if(!gameData.isClickable && gameData.mainScene === 'Game') return
-            
-            this.stopCurrentAudio()
-
             this.resetContainerToNewScene('j4-hm')
+            
             gameData.mainScene = 'Game'
-            this.start()
+            bgEle.style.backgroundImage = "url('./../Assets/imgs/general/hm_background.png')"
+
+            this.start(true)
         })
 
         homeBtnEl.addEventListener('mouseenter', () => {
-            this.playAudio(gameAssets['btn_select'])
+            this.playAudio(gameAssets['btn_select'], 'btn_select')
         })
 
-        bg.append(foreground, monkeyLeft, monkeyRight, homeBtnEl)
+        j4_bg.append(bgEle, foreground, monkeyLeft, monkeyRight, homeBtnEl)
     }
     toggleBgDisplay(){
         const j4_bg = document.querySelector('#j4-bg')
@@ -290,7 +339,7 @@ class Game {
             btn.addEventListener('mouseenter', () => {
                 if(!h_aux){
                     h_aux = !h_aux
-                   if(element === document) this.playAudio(gameAssets['btn_select'])
+                   if(element === document) this.playAudio(gameAssets['btn_select'], 'btn_select')
                 }
             })
 

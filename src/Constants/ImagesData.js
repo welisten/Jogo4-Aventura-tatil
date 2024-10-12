@@ -33,7 +33,76 @@ const generalImgDtArr = [
         name: 'home_gif',
         key: 'home gif',
         src: '../Assets/imgs/general/home_gif.gif'
+    },
+    {
+        name: 'concordiaBG',
+        key: 'concordiaBG',
+        src: '../Assets/imgs/general/concordiaBG.jpg'
     }
+   
+]
+
+const animalsImgDtArr = [
+    {
+        name: 'coruja-do-mato',
+        key: 'coruja do mato',
+        src: '../Assets/imgs/animals/coruja-do-mato.jpg'
+    },
+    {
+        name: 'jacutinga',
+        key: 'jacutinga',
+        src: '../Assets/imgs/animals/jacutinga.jpeg'
+    },
+    {
+        name: 'mico-leao-dourado',
+        key: 'mico leao dourado',
+        src: '../Assets/imgs/animals/mico-leao-dourado.webp'
+    },
+    {
+        name: 'quati',
+        key: 'quati',
+        src: '../Assets/imgs/animals/quati.jpg'
+    },
+    {
+        name: 'ra-assobiadora',
+        key: 'ra assobiadora',
+        src: '../Assets/imgs/animals/ra-assobiadora.jpg'
+    },
+    {
+        name: 'tucano-de-bico-preto',
+        key: 'tucano de bico preto',
+        src: '../Assets/imgs/animals/tucano-de-bico-preto.webp'
+    },
+    {
+        name: 'muriqui',
+        key: 'muriqui',
+        src: '../Assets/imgs/animals/muriqui.jpg'
+    },
+    {
+        name: 'perereca-verde',
+        key: 'perereca verde',
+        src: '../Assets/imgs/animals/perereca-verde.jpg'
+    },
+    {
+        name: 'sabia-laranjeira',
+        key: 'sabia laranjeira',
+        src: '../Assets/imgs/animals/sabia-laranjeira.jpg'
+    },
+    {
+        name: 'boto-cinza',
+        key: 'boto cinza',
+        src: '../Assets/imgs/animals/boto-cinza.jpg'
+    },
+    {
+        name: 'tatu-galinha',
+        key: 'tatu galinha',
+        src: '../Assets/imgs/animals/tatu-galinha.jpg'
+    },
+    {
+        name: 'onca-parda',
+        key: 'onca parda',
+        src: '../Assets/imgs/animals/onca-parda.jpg'
+    },
    
 ]
 
@@ -41,4 +110,5 @@ const generalImgDtArr = [
 
 export{
     generalImgDtArr,
+    animalsImgDtArr
 }
