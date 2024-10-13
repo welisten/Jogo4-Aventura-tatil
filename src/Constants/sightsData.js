@@ -58,9 +58,9 @@ const sightData = {
                 sound: 'boto-cinza-sound'
             },
             {
-                nome: 'tatu-galinha', 
-                descri: 'O tatu é um animal com uma casca dura, como se fosse uma armadura. Se você tocasse, sentiria algo liso e duro. Ele gosta de cavar a terra, fazendo um barulhinho como "rasp, rasp" com suas unhas fortes.', 
-                sound: 'tatu-galinha-sound'
+                nome: 'mico-estrela', 
+                descri: 'Esse macaquinho é bem pequeno e tem pelinhos fofos, com mechas brancas nas orelhas que parecem estrelinhas! Ele é super ágil e vive pulando de galho em galho, adorando frutas e insetos.  O mico-estrela é um dos pequenos acrobatas da floresta, sempre atento e cheio de energia! vivem em grupos e estão sempre se comunicando com esses sons para avisar se há comida por perto ou se algum perigo está chegando. O mico-estrela faz sons rápidos e agudos.', 
+                sound: 'mico-estrela-sound'
             },
             {
                 nome: 'onca-parda', 

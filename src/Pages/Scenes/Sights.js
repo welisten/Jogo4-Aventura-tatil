@@ -24,8 +24,6 @@ class Sights{
         this.setAnimals() 
         this.buildContainer() 
         this.setContainerElements() 
-
-        console.log(this.game.currentAudio)
     }
     setAnimals(){
         if(sightData[this.location.name]){
@@ -67,6 +65,8 @@ class Sights{
         sightsContainer.appendChild(cardsContainer)
         mainC.append(sightsContainer)
 
+        this.game.playAudio(gameAssets['nature_ambience'], 'nature_ambience', .3, true)
+
     }
 
     setContainerElements(){
@@ -75,7 +75,8 @@ class Sights{
         const cardsContainer = document.querySelector('.stg-card')
         const cardTitle = document.querySelector('.stg-card-title')
         const cardBody = document.querySelector('.stg-card-body')
-        let cardImg, cardDescri, cardPlay, cardCloseBtn;
+        let cardImg, cardName, cardDescri, cardPlay, cardCloseBtn;
+
 
         sights.forEach((spot, i) => {
             spot.addEventListener('click', () => { 
@@ -91,7 +92,11 @@ class Sights{
                 cardImg = this.game.getImage(this.location.animals[i].nome)
                 cardCloseBtn = this.game.createNewElement('button', 'card-close btn', 'cardCloseBtn')
                 cardCloseBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>'
-
+                
+                cardName = this.game.createNewElement('p', 'card-name-text')
+                let name = this.location.animals[i].nome
+                cardName.innerHTML = name.replace(/-/g, ' ')
+                
                 cardDescri = this.game.createNewElement('p', 'card-descri-text')
                 cardDescri.innerHTML = this.location.animals[i].descri
                 
@@ -99,8 +104,26 @@ class Sights{
                 cardPlay.innerHTML = `<i class="fa-solid fa-play"></i>`
 
                 cardTitle.append(cardImg)
-                cardBody.append(cardDescri, cardPlay)
+                cardBody.append(cardName, cardDescri, cardPlay)
                 cardsContainer.appendChild( cardCloseBtn)
+                
+                for(let i = 0; i < 4; i++){
+                    let cloud = this.game.getImage(`static-cloud-${i+1}`)
+                    cloud.classList.add(`static-cloud`)
+                    cloud.classList.add(`sc${i+1}`)
+                    cardsContainer.appendChild(cloud)
+                    console.log(cloud)
+
+                        // if(i < 2){
+                        //     let greeM = this.game.getImage(`green-mountain-${i+ 1}`)
+                        //     greeM.classList.add('card-mountain')
+                        //     greeM.classList.add(`cm${i+1}`)
+                        //     cardsContainer.appendChild(greeM)
+                        //     console.log(greeM)
+                        
+                        // }
+                }
+                this.game.playAudio(gameAssets['positiveBlipEffect'], undefined, .1)
 
                 cardPlay.addEventListener('click', () => {
                     if(!gameData.isPlayingSound){ // PLAY
@@ -122,17 +145,23 @@ class Sights{
                     bg.classList.remove('blur')
                     sights.forEach(spot => spot.style.display = 'block')
                     cardsContainer.style.display = 'none'
+                    
                     this.game.stopCurrentAudio()
                     gameData.isClickable = true
+                    this.game.playAudio(gameAssets['nature_ambience'], 'nature_ambience', .3, true)
+
                 })
                 
-            })  
+            }) 
+            
+            spot.addEventListener('mouseover', () => {
+                this.game.playAudio(gameAssets['btn_select'], '', .3)
+            })
         })
     }
 
     playAnimalSound(audioBuffer, animalSoundName){
         let src, gainNode;
-        console.log(this.game.currentAudio)
         
         if( animalSoundName in this.game.currentAudio){
             let pausedAt = this.game.currentAudio[animalSoundName].config.pausedAt || 0
@@ -183,7 +212,7 @@ class Sights{
             this.game.currentAudio[soundName].audio.stop()
             this.game.currentAudio[soundName].config.pausedAt = pausedAt
         } else {
-            throw new Error('It is not possible to play an inexisted audio')
+            throw new Error('It is not possible to stop an inexisted audio')
         }
 
     }

@@ -25,6 +25,36 @@ const generalImgDtArr = [
         src: '../Assets/imgs/general/monkey_left.gif'
     },
     {
+        name: 'static-cloud-1',
+        key: 'static cloud 1',
+        src: '../Assets/imgs/general/sttCloud.png'
+    },
+    {
+        name: 'static-cloud-2',
+        key: 'static cloud 2',
+        src: '../Assets/imgs/general/sttCloud.png'
+    },
+    {
+        name: 'static-cloud-3',
+        key: 'static cloud 3',
+        src: '../Assets/imgs/general/sttCloud.png'
+    },
+    {
+        name: 'static-cloud-4',
+        key: 'static cloud 4',
+        src: '../Assets/imgs/general/sttCloud.png'
+    },
+    {
+        name: 'green-mountain-1',
+        key: 'green mountain 1',
+        src: '../Assets/imgs/general/greenMount.png'
+    },
+    {
+        name: 'green-mountain-2',
+        key: 'green mountain 2',
+        src: '../Assets/imgs/general/greenMount.png'
+    },
+    {
         name: 'monkey_right',
         key: 'monkey right',
         src: '../Assets/imgs/general/monkey_right.gif'
@@ -94,9 +124,9 @@ const animalsImgDtArr = [
         src: '../Assets/imgs/animals/boto-cinza.jpg'
     },
     {
-        name: 'tatu-galinha',
-        key: 'tatu galinha',
-        src: '../Assets/imgs/animals/tatu-galinha.jpg'
+        name: 'mico-estrela',
+        key: 'mico estrela',
+        src: '../Assets/imgs/animals/mico-estrela.jpg'
     },
     {
         name: 'onca-parda',

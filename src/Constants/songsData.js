@@ -67,7 +67,7 @@ const audioDataArr = [
     {
         name: 'perereca-verde-sound',
         key: 'perereca verde',
-        src:'../Assets/songs/animals/perereca-verde.weba'
+        src:'../Assets/songs/animals/perereca-verde.mp3'
     },
     {
         name: 'sabia-laranjeira-sound',
@@ -80,15 +80,15 @@ const audioDataArr = [
         src:'../Assets/songs/animals/boto-cinza.mp3'
     },
     {
-        name: 'tatu-galinha-sound',
-        key: 'tatu galinha',
-        src:'../Assets/songs/animals/tatu-galinha.mp3'
+        name: 'mico-estrela-sound',
+        key: 'mico estrela',
+        src:'../Assets/songs/animals/mico-estrela.mp3'
     },
     {
         name: 'onca-parda',
         key: 'onca parda',
         src:'../Assets/songs/animals/onca-parda.mp3'
-    },
+    }
 ]
 
 export {
