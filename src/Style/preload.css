@@ -6,9 +6,7 @@
 :root{
     --bg-dark--: #000000;
 }
-html{
-    font-size: 62.5%;
-}
+
 body{
 
 }
@@ -77,32 +75,3 @@ canvas{
     position: relative;
     z-index: 2;
 }
-/* #char_1{
-    left: 50.5%;
-    height: calc(70% * 0.6);
-}
-
-#bg_ring{
-    height: calc(70% * 0.6);
-}
-
-.logo.active::before{
-    content: '';
-    height: .5vh;
-    width:  .5vh;
-    background-color: #fffac2;
-    backdrop-filter: blur(100%);
-    position: absolute;
-    top: 50%;
-    left: 51%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 5px solid #fffac2;
-    box-shadow:  0px 0px 1px 1px #f2de04,
-                 0px 0px 10px 5px #fae717,
-                 0px 0px 20px 10px #f7e952c5,
-                 0px 0px 40px 40px #faf2976b,
-                 0px 0px 120px 60px #fcf5ad3b,
-                 0px 0px 100px 100px  #fffac25b;
-
-} */

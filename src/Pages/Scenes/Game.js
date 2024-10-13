@@ -82,16 +82,17 @@ class Game {
         const hm_c_title = this.createNewElement('div', 'hm-c-title container')
         const hm_title = this.createNewElement('p')
 
-        hm_title.innerHTML = 'Vamos Explorar !'
+        hm_title.innerHTML = 'Vamos Explorar'
 
         hm_c_title.appendChild(hm_title)
         hmContainer.appendChild(hm_c_title)
+
 
         const hmTable = this.createNewElement('table', 'hm-table')
         const hmThead = this.createNewElement('thead', 'hm-thead')
         const hmTh = this.createNewElement('th', 'hm-t')
         
-        hmTh.innerHTML = 'escolha o local :'
+        hmTh.innerHTML = 'escolha o local'
         hmThead.appendChild(hmTh)
 
         const hmTbody = this.createNewElement('tbody', 'hm-tbody')
@@ -112,7 +113,8 @@ class Game {
         
         hmContainer.appendChild(hmTable)
         main.appendChild(hmContainer)
-
+        
+        textFit(hm_title)
     }
     setContainersElms(){
         // CONFIGURAR OS BOTÕES DO MENU E QUALQUER OUTRO ELEMENTO DA TELA
@@ -316,7 +318,7 @@ class Game {
         })
 
         homeBtnEl.addEventListener('mouseenter', () => {
-            this.playAudio(gameAssets['btn_select'], 'btn_select')
+            this.playAudio(gameAssets['btn_select'], 'btn_select', .05)
         })
 
         j4_bg.append(bgEle, foreground, monkeyLeft, monkeyRight, homeBtnEl)
@@ -339,7 +341,7 @@ class Game {
             btn.addEventListener('mouseenter', () => {
                 if(!h_aux){
                     h_aux = !h_aux
-                   if(element === document) this.playAudio(gameAssets['btn_select'], 'btn_select')
+                   if(element === document) this.playAudio(gameAssets['btn_select'], 'btn_select', .05)
                 }
             })
 

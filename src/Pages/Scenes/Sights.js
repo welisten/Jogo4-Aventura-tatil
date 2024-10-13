@@ -2,6 +2,7 @@ import { gameData } from "../../Constants/gameData.js";
 import { colors } from "../../Constants/Colors.js";
 import { sightData } from "../../Constants/sightsData.js";
 
+
 class Sights{
     constructor(game, location ){
         this.game = game
@@ -107,22 +108,16 @@ class Sights{
                 cardBody.append(cardName, cardDescri, cardPlay)
                 cardsContainer.appendChild( cardCloseBtn)
                 
+                textFit(cardDescri)
+                textFit(cardName)
+
                 for(let i = 0; i < 4; i++){
                     let cloud = this.game.getImage(`static-cloud-${i+1}`)
                     cloud.classList.add(`static-cloud`)
                     cloud.classList.add(`sc${i+1}`)
                     cardsContainer.appendChild(cloud)
-                    console.log(cloud)
-
-                        // if(i < 2){
-                        //     let greeM = this.game.getImage(`green-mountain-${i+ 1}`)
-                        //     greeM.classList.add('card-mountain')
-                        //     greeM.classList.add(`cm${i+1}`)
-                        //     cardsContainer.appendChild(greeM)
-                        //     console.log(greeM)
-                        
-                        // }
                 }
+
                 this.game.playAudio(gameAssets['positiveBlipEffect'], undefined, .1)
 
                 cardPlay.addEventListener('click', () => {
