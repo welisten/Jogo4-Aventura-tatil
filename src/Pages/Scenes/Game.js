@@ -8,6 +8,7 @@ class Game {
 
         this.element = document.querySelector('#game_container')
         this.element.classList.add('j4-hm')
+        this.events = []
        
         this.currentAudio = {
             default: {
@@ -166,6 +167,7 @@ class Game {
         main.innerHTML = " "
         this.element.className = clss;
         this.stopCurrentAudio()
+        this.events.forEach(e => e.elem.removeEventListener(e.event, e.func))
     }
 
     playAudio(audioBuffer, audioName = undefined, volume = 1.0, loop = false ){   

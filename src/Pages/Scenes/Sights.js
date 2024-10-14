@@ -40,7 +40,7 @@ class Sights{
         const mainC = this.element.querySelector('#main')
         const sightsContainer = this.game.createNewElement('div', 'sgt-container container')
 
-        const cardsContainer = this.game.createNewElement('div', 'stg-card container')
+        const cardsContainer = this.game.createNewElement('div', 'stg-card container', 'stg-card')
         const cardTitle = this.game.createNewElement('div', 'stg-card-title')
         const cardBody = this.game.createNewElement('div', 'stg-card-body')
 
@@ -91,6 +91,8 @@ class Sights{
                 cardTitle.innerHTML = ''
                 
                 cardImg = this.game.getImage(this.location.animals[i].nome)
+                cardImg.setAttribute('class', 'cardImage')
+
                 cardCloseBtn = this.game.createNewElement('button', 'card-close btn', 'cardCloseBtn')
                 cardCloseBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>'
                 
@@ -146,14 +148,85 @@ class Sights{
                     this.game.playAudio(gameAssets['nature_ambience'], 'nature_ambience', .3, true)
 
                 })
+
+                cardTitle.addEventListener('click', () => {
+                    const mainC = this.element.querySelector('#main')
+                    const cardsContainer = document.querySelector('#stg-card')
+
+                    cardImg.classList.remove('cardImage')
+                    cardImg.classList.add('cardImg')
+                    bg.parentNode.classList.add('blur')
+                    cardsContainer.classList.add('blur')
+
+                    mainC.append(cardImg)
+
+                    const scapeImage = (e) => {
+                        let isBlur = cardsContainer.classList.contains('blur')
+                        if(e.key === 'Escape' && isBlur){
+                            setTimeout(() => {
+                                cardImg.remove()
+                                cardTitle.append(cardImg)
+                               
+                                bg.parentNode.classList.remove('blur')
+                                cardsContainer.classList.remove('blur')
+    
+                                cardImg.classList.remove('cardImg')
+                                cardImg.classList.add('cardImage')
+                            }, 100)
+                        }
+                        return
+                    }
+                    document.addEventListener('keyup', scapeImage)
+                    this.game.events.push({func: scapeImage, elem: document, event: 'click'})
+
+                    document.addEventListener('mousedown', (e) => {
+                        let isBlur = cardsContainer.classList.contains('blur')
+                       
+                        if(!isBlur){
+                            return
+                        } else {
+                            if(!cardImg.contains(e.target)){
+                                cardImg.remove()
+                                cardTitle.append(cardImg)
+                               
+                                bg.parentNode.classList.remove('blur')
+                                cardsContainer.classList.remove('blur')
+    
+                                cardImg.classList.remove('cardImg')
+                                cardImg.classList.add('cardImage')  
+                            } 
+                        }
+                    })
+                })
+
+                const scapeCardImage = (e) => {
+                    let correctMoment, cardsContainerEl, sightsEl;
+                    
+                    correctMoment = bg.classList.contains('blur') && !bg.parentNode.classList.contains('blur')
+                    cardsContainerEl = document.querySelector('#stg-card')
+                    sightsEl = document.querySelectorAll('.spot')
+
+                    if(e.key === 'Escape' && correctMoment){
+                        bg.classList.remove('blur')
+                        cardsContainerEl.style.display = 'none'
+                        sightsEl.forEach(spot => spot.style.display = 'block')
+                        
+                        this.game.stopCurrentAudio()
+                        gameData.isClickable = true
+                        this.game.playAudio(gameAssets['nature_ambience'], 'nature_ambience', .3, true)
+                    }
+                }
+                document.addEventListener('keyup', scapeCardImage) 
+                this.game.events.push({func: scapeCardImage, elem: document, })
                 
-            }) 
-            
-            spot.addEventListener('mouseover', () => {
+
+                spot.addEventListener('mouseover', () => {
                 this.game.playAudio(gameAssets['btn_select'], '', .3)
+                })
             })
-        })
+        })  
     }
+
 
     playAnimalSound(audioBuffer, animalSoundName){
         let src, gainNode;

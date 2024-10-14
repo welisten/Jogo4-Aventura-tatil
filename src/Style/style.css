@@ -183,216 +183,6 @@ body{
         }
     }
 }
-.j4-sgt{
-    transition: all 1s ease;
-    
-    & .j4-bg{
-        transition: all 1s ease;
-        
-        & .monkey{
-            display: none;
-        }
-    }
-    & .j4-bg-bg.blur{
-        transition: all 1s ease;
-        filter: blur(10px);
-    }
-    & .j4-bg-bg.blur ~ img{
-        transition: all 1s ease;
-        filter: drop-shadow(2px 4px 6px black)
-    }
-
-    & #main{
-        height: 100%;
-        width: 100%;
-
-        & .sgt-container{
-            height: 100%;
-            width: 100%;
-            position: relative;
-            justify-content: center;    
-            align-items: center;
-            flex-direction: column;
-            z-index: 1;
-    
-            & .spot{
-                position: absolute;
-                width: 8vh;
-                height: 8vh;
-                max-height: 80px;
-                max-width: 80px;
-                background-color: #ffffff5e;
-                border: 4px solid var(--green-lima--);
-                border: 4px solid var(--orange--);
-                border-radius: 50%;
-                z-index: 2;
-            }
-            & .stg-card{
-                flex-direction: column;
-                position: relative;
-                height: 82%;
-                width: 32%;
-                border: 1px solid white;
-                border-radius: 15px;
-                z-index: 5;
-                background-color: #ffffff5c;
-                filter: drop-shadow(2px 4px 6px black);
-               
-                & .card-close.btn{
-                    height: 3rem;
-                    width: 3rem;
-                    position: absolute;
-                    top: -2%;
-                    right: -23%;
-                    border: 1px solid;
-                    border-radius: 50%;
-                    transform: translate(-50%, -50%);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background: #ec0404;
-                    color: #fff;
-                    z-index: 10;
-
-                    & i{
-                        font-size: 2.5rem;
-                        line-height: 90%;
-                    }
-                }
-
-                & .stg-card-title{
-                    height: 40%;
-                    width: 95%;
-                    max-width: 95%;
-                    border: 1px solid white;
-                    border-radius: 15px;
-                    margin: 2.5%;
-                    overflow: hidden;
-                    display: flex;
-                    align-items: center;
-                    position: relative;
-
-                    & img{
-                        width: 100%;
-                        min-height: 100%;
-                        cursor: pointer;
-                    }
-                }
-
-                & .stg-card-body{
-                    height: 59%;
-                    width: 95%;
-                    max-width: 95%;
-                    border: 1px solid white;
-                    border-radius: 15px;
-                    margin: 0 2.5% 2.5%;
-                    padding: 2.5% 2.5%;
-                    font-size: clamp(1.2rem, 1.4rem, 1.6rem);
-                    text-align: center;
-                    font-weight: 300;
-                    color: white;
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    flex-direction: column;
-
-                    & .card-name-text{
-                        height: 15%;
-                        width: 100%;
-                        text-align: center;
-                        align-content: center;
-                        font-weight: 500;
-                        text-transform: capitalize;
-                        color: white;
-
-                    }
-                    & .card-descri-text{
-                        height: 85%;
-                        align-content: center;
-                        text-align: center;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        word-break: keep-all;
-                        word-wrap: normal;
-
-                    }
-
-                    & .card-play.btn{
-                        height: 3rem;
-                        width: 3rem;
-                        position: absolute;
-                        top: -15%;
-                        left: 9%;
-                        border: 1px solid;
-                        border-radius: 50%;
-                        transform: translate(-50%, -50%);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        background: #ffffff63;
-                        color: #000;
-                        z-index: 10;
-          
-
-                        & i{
-                            font-size: 2rem;
-                            transform: translate(10%, 10%);
-                        }
-                    }
-                }
-
-                & .stg-card-footer{
-                    position: relative;
-                }
-
-                & .static-cloud{
-                    position: absolute;
-                    top: 0;
-                    height: 16%;
-                    transform: translate(-50%, -50%);
-                    z-index: 3;
-                }
-                & .sc1{
-                    top: 18%;
-                    left: -30%;
-                }
-                & .sc2{
-                    top: -5%;
-                    left: -8%;
-                    transform: translate(-50%, -50%) scale(.5);
-                }
-                & .sc3{
-                    top:18%;
-                    left: 131%;
-                    transform: translate(-50%, -50%) scale(1.3) rotateY(180deg);
-                }
-                & .sc4{
-                    top: -6%;
-                    left: 90%;
-                    transform: translate(-50%, -50%) scale(.4) rotateY(180deg);
-                }
-
-                & .card-mountain{
-                    position: absolute;
-                    bottom: -17%;
-                    height: 20%;
-                    transform: translate(-50%, -50%);
-                    z-index: 0;
-
-                }
-
-                & .cm1{
-                    left:  -12%;
-                }
-                & .cm2{
-                    right: -75%;
-                    transform: translate(-50%, -50%) rotateY(180deg);
-                }
-            
-            }
-        }
-    }
-}
                                     /* HOME */
 .j4-hm #main{
     height: 100%;
@@ -510,17 +300,240 @@ body{
 
     
 }
+.j4-sgt{
+    transition: all 1s ease;
+    
+    & .j4-bg{
+        transition: all 1s ease;
+        
+        & .monkey{
+            display: none;
+        }
+    }
+    & .j4-bg-bg.blur{
+        filter: blur(10px);
+    }
+    & .j4-bg-bg.blur ~ img{
+        filter: drop-shadow(2px 4px 6px black)
+    }
+
+    & #main{
+        height: 100%;
+        width: 100%;
+
+        & .cardImg{
+            max-width: 90%;
+            max-height: 90%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 15px;
+            border: 1px solid white;
+            pointer-events: all;
+        }
+
+        & .sgt-container{
+            height: 100%;
+            width: 100%;
+            position: relative;
+            justify-content: center;    
+            align-items: center;
+            flex-direction: column;
+            z-index: 1;
+    
+            & .spot{
+                position: absolute;
+                width: 8vh;
+                height: 8vh;
+                max-height: 80px;
+                max-width: 80px;
+                background-color: #ffffff5e;
+                border: 4px solid var(--green-lima--);
+                border: 4px solid var(--orange--);
+                border-radius: 50%;
+                z-index: 2;
+            }
+            & .stg-card{
+                flex-direction: column;
+                position: relative;
+                height: 82%;
+                width: 32%;
+                border: 1px solid white;
+                border-radius: 15px;
+                z-index: 5;
+                background-color: #ffffff5c;
+                filter: drop-shadow(2px 4px 6px black);
+               
+                & .card-close.btn{
+                    height: 3rem;
+                    width: 3rem;
+                    position: absolute;
+                    top: -2%;
+                    right: -23%;
+                    border: 1px solid;
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #ec0404;
+                    color: #fff;
+                    z-index: 10;
+
+                    & i{
+                        font-size: 2.5rem;
+                        line-height: 90%;
+                    }
+                }
+
+                & .stg-card-title{
+                    height: 40%;
+                    width: 95%;
+                    max-width: 95%;
+                    border: 1px solid white;
+                    border-radius: 15px;
+                    margin: 2.5%;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    cursor: pointer;
 
 
+                    & .cardImage{
+                        width: 100%;
+                        min-height: 100%;
+                        cursor: pointer;
+                    }
+                }
 
-#game_container .j4-sgt{
+                & .stg-card-body{
+                    height: 59%;
+                    width: 95%;
+                    max-width: 95%;
+                    border: 1px solid white;
+                    border-radius: 15px;
+                    margin: 0 2.5% 2.5%;
+                    padding: 2.5% 2.5%;
+                    font-size: clamp(1.2rem, 1.4rem, 1.6rem);
+                    text-align: center;
+                    font-weight: 300;
+                    color: white;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
 
+                    & .card-name-text{
+                        height: 15%;
+                        width: 100%;
+                        text-align: center;
+                        align-content: center;
+                        font-weight: 500;
+                        text-transform: capitalize;
+                        color: white;
+
+                    }
+                    & .card-descri-text{
+                        height: 85%;
+                        align-content: center;
+                        text-align: center;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        word-break: keep-all;
+                        word-wrap: normal;
+
+                    }
+
+                    & .card-play.btn{
+                        height: 3rem;
+                        width: 3rem;
+                        position: absolute;
+                        top: -15%;
+                        left: 9%;
+                        border: 1px solid;
+                        border-radius: 50%;
+                        transform: translate(-50%, -50%);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #ffffff63;
+                        color: #000;
+                        z-index: 10;
+          
+
+                        & i{
+                            font-size: 2rem;
+                            transform: translate(10%, 10%);
+                        }
+                    }
+                }
+
+                & .stg-card-footer{
+                    position: relative;
+                }
+
+                & .static-cloud{
+                    position: absolute;
+                    top: 0;
+                    height: 16%;
+                    transform: translate(-50%, -50%);
+                    z-index: 3;
+                }
+                & .sc1{
+                    top: 18%;
+                    left: -30%;
+                }
+                & .sc2{
+                    top: -5%;
+                    left: -8%;
+                    transform: translate(-50%, -50%) scale(.5);
+                }
+                & .sc3{
+                    top:18%;
+                    left: 131%;
+                    transform: translate(-50%, -50%) scale(1.3) rotateY(180deg);
+                }
+                & .sc4{
+                    top: -6%;
+                    left: 90%;
+                    transform: translate(-50%, -50%) scale(.4) rotateY(180deg);
+                }
+
+                & .card-mountain{
+                    position: absolute;
+                    bottom: -17%;
+                    height: 20%;
+                    transform: translate(-50%, -50%);
+                    z-index: 0;
+
+                }
+
+                & .cm1{
+                    left:  -12%;
+                }
+                & .cm2{
+                    right: -75%;
+                    transform: translate(-50%, -50%) rotateY(180deg);
+                }
+            
+            }
+
+            & .stg-card.blur{
+                filter: blur(10px);
+            }
+        }
+    }
+
+    & .blur{
+        filter: blur(10px);
+    }
+    & .blur ~ img{
+        filter: drop-shadow(2px 4px 6px black)
+    }
 }
-                                    
-
-.gameControls{
-}
-
 
 @media (max-width: 3400px){
     html{
