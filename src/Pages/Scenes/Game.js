@@ -34,6 +34,8 @@ class Game {
 
         const muteBtn = document.querySelector('#muteBtn')
         const lightBtn = document.querySelector('#lightBtn')
+        const infoBtn = document.querySelector('#infoBtn')
+        const closeBtn = document.querySelector('#t-close')
 
         setIcons()
 
@@ -43,6 +45,33 @@ class Game {
 
         lightBtn.addEventListener('click', () => {
             this.toggleLightMode()
+        })
+
+        infoBtn.addEventListener('click', () => {
+                const main = document.querySelector('#main')
+                const j4Bg = document.querySelector('#j4-bg')
+                const info = document.querySelector('#info')
+                let titleText, board1Text, board2Text;
+    
+                titleText = document.querySelector('.t-text')
+                
+                main.classList.toggle('blur')
+                j4Bg.classList.toggle('blur')
+                info.classList.toggle('active')
+                textFit(titleText)
+                textFit(board1Text)
+                textFit(board2Text)
+                
+        })
+
+        closeBtn.addEventListener('click', () => {
+            const main = document.querySelector('#main')
+            const j4Bg = document.querySelector('#j4-bg')
+            const info = document.querySelector('#info')
+
+            main.classList.toggle('blur')
+            j4Bg.classList.toggle('blur')
+            info.classList.toggle('active')
         })
 
         function setIcons(){
@@ -310,7 +339,7 @@ class Game {
         homeBtnEl.appendChild(homeGif)
 
         homeBtnEl.addEventListener('click', () => {
-            if(!gameData.isClickable && gameData.mainScene === 'Game') return
+            if(!gameData.isClickable ||  gameData.mainScene === 'Game') return
             this.resetContainerToNewScene('j4-hm')
             
             gameData.mainScene = 'Game'

@@ -84,9 +84,9 @@ const animalsImgDtArr = [
         src: '../Assets/imgs/animals/jacutinga.jpeg'
     },
     {
-        name: 'mico-leao-dourado',
-        key: 'mico leao dourado',
-        src: '../Assets/imgs/animals/mico-leao-dourado.webp'
+        name: 'ben-te-vi',
+        key: 'bentevi',
+        src: '../Assets/imgs/animals/bentevi.webp'
     },
     {
         name: 'quati',

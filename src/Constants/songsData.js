@@ -40,9 +40,9 @@ const audioDataArr = [
         src:'../Assets/songs/animals/jacutinga.mp3'
     },
     {
-        name: 'mico-leao-dourado-sound',
-        key: 'mico leao dourado',
-        src:'../Assets/songs/animals/mico-leao-dourado.mp3'
+        name: 'bentevi-sound',
+        key: 'bentevi',
+        src:'../Assets/songs/animals/bentevi.mp3'
     },
     {
         name: 'quati-sound',
@@ -85,7 +85,7 @@ const audioDataArr = [
         src:'../Assets/songs/animals/mico-estrela.mp3'
     },
     {
-        name: 'onca-parda',
+        name: 'onca-parda-sound',
         key: 'onca parda',
         src:'../Assets/songs/animals/onca-parda.mp3'
     }

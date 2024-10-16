@@ -16,7 +16,7 @@ class Sights{
         this.start()
         
         const captalizeStr = (str) => {
-            // if(!str || typeof str !== 'string') return
+            if(!str || typeof str !== 'string') return
             return str.charAt(0).toLocaleUpperCase() + str.slice(1).toLocaleLowerCase()
         }
         document.title = captalizeStr(location)
@@ -80,6 +80,7 @@ class Sights{
 
 
         sights.forEach((spot, i) => {
+            console.log(i)
             spot.addEventListener('click', () => { 
                 gameData.isClickable = false
 
@@ -172,6 +173,7 @@ class Sights{
     
                                 cardImg.classList.remove('cardImg')
                                 cardImg.classList.add('cardImage')
+
                             }, 100)
                         }
                         return
@@ -193,7 +195,7 @@ class Sights{
                                 cardsContainer.classList.remove('blur')
     
                                 cardImg.classList.remove('cardImg')
-                                cardImg.classList.add('cardImage')  
+                                cardImg.classList.add('cardImage') 
                             } 
                         }
                     })

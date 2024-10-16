@@ -2,9 +2,9 @@ const sightData = {
     concordia:{
         animals: [
             {
-                nome: 'mico-leao-dourado', 
-                descri: 'Ele é pequeno, mas muito especial. Ele tem o pelo todo douradinho, parecendo um leãozinho! Ele adora pular de árvore em árvore e faz uns sons parecidos com "piu piu piu" bem rapidinho. Quando ele está feliz ou curioso, você pode escutar esses sons, como se ele estivesse brincando ou procurando algo gostoso para comer.', 
-                sound: 'mico-leao-dourado-sound'
+                nome: 'ben-te-vi', 
+                descri: 'O bem-te-vi é um passarinho muito conhecido pelo seu canto, que parece dizer "bem-te-vi"! Ele tem penas amarelas na barriga e um chapéu preto na cabeça. O som que ele faz é alto e claro, como um "bem-te-vi" bem alegre, e você pode ouvi-lo de longe, especialmente quando ele está no alto de uma árvore ou voando. É como se ele estivesse sempre dizendo "oi" para todo mundo ao redor.', 
+                sound: 'bentevi-sound'
             }, 
             {   
                 nome: 'coruja-do-mato', 
@@ -66,7 +66,7 @@ const sightData = {
                 nome: 'onca-parda', 
                 descri: 'A onça-parda é um felino grande e ágil, com pelos curtos e macios, que lembram o toque de um tecido bem liso. Ela é bem silenciosa e esperta, e seus passos quase não fazem barulho, como se estivesse andando em uma cama de algodão. Ela tem patas grandes com garras afiadas, que ajudam a subir em árvores e correr rápido', 
                 sound: 'onca-parda-sound'
-            },
+            }
         ],
         coordinates:[{x:24,y:20}, {x:36 ,y:60}, {x:40 ,y:40}, {x:57 ,y:25}, {x:73 ,y:60}, {x:75 ,y:10}], 
         background: 'apaBG.jpg'
