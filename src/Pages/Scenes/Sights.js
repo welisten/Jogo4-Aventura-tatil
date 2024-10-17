@@ -249,7 +249,7 @@ class Sights{
             gainNode.connect(this.game.audioContext.destination)
             
             src.start(0, pausedAt)
-            this.game.currentAudio[animalSoundName] = {config:{startTime: 0, pausedAt: undefined, gainNode: gainNode}}
+            this.game.currentAudio[animalSoundName] = {config:{startTime: 0, pausedAt: undefined, gainNode: gainNode, volume: vl}}
             this.game.currentAudio[animalSoundName].audio = src
         } else {
 
@@ -266,7 +266,7 @@ class Sights{
             gainNode.connect(this.game.audioContext.destination)
             
             src.start(0, 0)
-            this.game.currentAudio[animalSoundName] = {config:{startTime: 0, pausedAt: undefined, gainNode: gainNode}}
+            this.game.currentAudio[animalSoundName] = {config:{startTime: 0, pausedAt: undefined, gainNode: gainNode, volume: vl}}
             this.game.currentAudio[animalSoundName].audio = src
 
         }

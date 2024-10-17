@@ -88,7 +88,6 @@ class Game {
             }
         }
     }
-
     start(restart = false){
         this.buildContainer()
         if (!restart) this.buildBg()
@@ -102,7 +101,6 @@ class Game {
             gameData.isClickable = true
         }, 1000)
     }
-
     buildContainer(){
         this.setMainContainer()
 
@@ -220,12 +218,9 @@ class Game {
                     this.currentAudio[audioName].audio = src
                 } else {
                     src.start(0, 0)
-                    this.currentAudio[audioName] = {config:{startTime: 0, pausedAt: undefined, gainNode: gainNode}}
+                    this.currentAudio[audioName] = {config:{startTime: 0, pausedAt: undefined, gainNode: gainNode, volume: volume}}
                     this.currentAudio[audioName].audio = src
                 }
-
-
-    
             }
             // Retorna o gainNode caso queira manipular o volume desse áudio no futuro
             return {source: src, gainNode: gainNode}
@@ -262,14 +257,15 @@ class Game {
         gameData.isDarkMode = ! gameData.isDarkMode
     }
     toggleVolume(){
-        this.gainNode.gain.value == 1 ? this.gainNode.gain.value = 0 : this.gainNode.gain.value = 1
+        // this.gainNode.gain.value == 1 ? this.gainNode.gain.value = 0 : this.gainNode.gain.value = 1
         for(let audio in this.currentAudio){
-            
-           
-           
-            
-            
-            this.currentAudio[audio]
+            let gain;
+            if( this.currentAudio[audio].config.gainNode) {
+                gain =  this.currentAudio[audio].config.gainNode.gain.value
+
+                gain = gain > 0 ? 0 : this.currentAudio[audio].config.volume
+                this.currentAudio[audio].config.gainNode.gain.value = gain
+            }  
         }
             
             
