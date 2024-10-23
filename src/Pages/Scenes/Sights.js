@@ -1,5 +1,4 @@
 import { gameData } from "../../Constants/gameData.js";
-import { colors } from "../../Constants/Colors.js";
 import { sightData } from "../../Constants/sightsData.js";
 
 
@@ -19,12 +18,17 @@ class Sights{
             if(!str || typeof str !== 'string') return
             return str.charAt(0).toLocaleUpperCase() + str.slice(1).toLocaleLowerCase()
         }
+
         document.title = captalizeStr(location)
+        gameData.mainScene = captalizeStr(location)
     }   
     start(){
         this.setAnimals() 
         this.buildContainer() 
         this.setContainerElements() 
+
+        gameData.isClickable =  true
+        if(gameData.isAccess) this.game.readText(sightData[this.location.name].descri, null, true)
     }
     setAnimals(){
         if(sightData[this.location.name]){
@@ -33,7 +37,6 @@ class Sights{
             throw new Error('location parameter is incorrect.')
         }
     }
-
     buildContainer(){
         const bg = document.querySelector('.j4-bg-bg')
         
@@ -54,7 +57,11 @@ class Sights{
             let spot, amount = this.location.animals.length;
 
             for(let i = 0; i < amount; i++){
-                spot = this.game.createNewElement('div', 'spot btn')
+                spot = this.game.createNewElement('p', 'spot btn')
+                spot.setAttribute('tabindex', `${i + 17}`)
+                spot.setAttribute('aria-label', `O ${i+1}º animal se esconde aqui.`)
+                spot.setAttribute('aria-live', `assertive`)
+                spot.setAttribute('title', `O ${i+1}º animal se esconde aqui.`)
                 
                 
                 spot.style.left = `${sightData[this.location.name].coordinates[i].x}%`
@@ -69,7 +76,6 @@ class Sights{
         this.game.playAudio(gameAssets['nature_ambience'], 'nature_ambience', .3, true)
 
     }
-
     setContainerElements(){
         const sights = document.querySelectorAll('.spot')
         const bg = document.querySelector('.j4-bg-bg')
@@ -80,10 +86,13 @@ class Sights{
 
 
         sights.forEach((spot, i) => {
-            console.log(i)
-            spot.addEventListener('click', () => { 
+            spot.addEventListener('click', (e) => { 
                 gameData.isClickable = false
-
+                this.game.readText(`${this.location.animals[i].nome}`)
+                
+                let currentIndex, elm = e.target;
+                currentIndex = elm.getAttribute('tabindex')
+                
                 bg.classList.add('blur')
                 sights.forEach(spot => spot.style.display = 'none')
                 cardsContainer.style.display = 'flex'
@@ -91,26 +100,38 @@ class Sights{
                 cardBody.innerHTML = ''
                 cardTitle.innerHTML = ''
                 
-                cardImg = this.game.getImage(this.location.animals[i].nome)
+                cardImg = this.game.getImage(this.location.animals[i].key)
                 cardImg.setAttribute('class', 'cardImage')
+                cardImg.setAttribute('tabindex', `1`)
+                cardImg.setAttribute('aria-label', `veja uma foto`)
+                cardImg.setAttribute('alt', this.location.animals[i].alt)
 
                 cardCloseBtn = this.game.createNewElement('button', 'card-close btn', 'cardCloseBtn')
                 cardCloseBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>'
+                cardCloseBtn.setAttribute('tabindex', `4`)
+                cardCloseBtn.setAttribute('aria-label', 'Fechar cartão')
                 
                 cardName = this.game.createNewElement('p', 'card-name-text')
                 let name = this.location.animals[i].nome
-                cardName.innerHTML = name.replace(/-/g, ' ')
+                cardName.innerHTML = name
                 
                 cardDescri = this.game.createNewElement('p', 'card-descri-text')
                 cardDescri.innerHTML = this.location.animals[i].descri
+                cardDescri.setAttribute('tabindex', `3`)
+                // cardDescri.setAttribute('tabindex', '3')
+
                 
                 cardPlay = this.game.createNewElement('button', 'card-play btn', 'cardBtn')
                 cardPlay.innerHTML = `<i class="fa-solid fa-play"></i>`
+                cardPlay.setAttribute('tabindex', `2`)
+                cardPlay.setAttribute('aria-label', `descubra o som !`)
 
+                
                 cardTitle.append(cardImg)
                 cardBody.append(cardName, cardDescri, cardPlay)
                 cardsContainer.appendChild( cardCloseBtn)
                 
+                setTimeout(() => cardImg.focus(), 1000)
                 textFit(cardDescri)
                 textFit(cardName)
 
@@ -118,6 +139,7 @@ class Sights{
                     let cloud = this.game.getImage(`static-cloud-${i+1}`)
                     cloud.classList.add(`static-cloud`)
                     cloud.classList.add(`sc${i+1}`)
+                    cloud.setAttribute('alt', 'nuvem')
                     cardsContainer.appendChild(cloud)
                 }
 
@@ -150,6 +172,24 @@ class Sights{
 
                 })
 
+                const scapeCardImage = (e) => {
+                    let correctMoment, cardsContainerEl, sightsEl;
+                    
+                    correctMoment = bg.classList.contains('blur') && !bg.parentNode.classList.contains('blur')
+                    cardsContainerEl = document.querySelector('#stg-card')
+                    sightsEl = document.querySelectorAll('.spot')
+
+                    if(e.key === 'Escape' && correctMoment){
+                        bg.classList.remove('blur')
+                        cardsContainerEl.style.display = 'none'
+                        sightsEl.forEach(spot => spot.style.display = 'block')
+                        
+                        this.game.stopCurrentAudio()
+                        gameData.isClickable = true
+                        this.game.playAudio(gameAssets['nature_ambience'], 'nature_ambience', .3, true)
+                    }
+                }
+
                 cardTitle.addEventListener('click', () => {
                     const mainC = this.element.querySelector('#main')
                     const cardsContainer = document.querySelector('#stg-card')
@@ -173,13 +213,19 @@ class Sights{
     
                                 cardImg.classList.remove('cardImg')
                                 cardImg.classList.add('cardImage')
-
+                                cardPlay.focus()
+                                this.game.events.forEach(event => document.removeEventListener(event.event, event.func))
+                                
+                                document.addEventListener('keydown', scapeCardImage) 
+                                this.game.events.push({func: scapeCardImage, elem: document, event: 'keydown'})
                             }, 100)
+                        } else if(e.key === 'Tab'){
+                            e.preventDefault()
                         }
                         return
                     }
-                    document.addEventListener('keyup', scapeImage)
-                    this.game.events.push({func: scapeImage, elem: document, event: 'click'})
+                    document.addEventListener('keydown', scapeImage)
+                    this.game.events.push({func: scapeImage, elem: document, event: 'keydown'})
 
                     document.addEventListener('mousedown', (e) => {
                         let isBlur = cardsContainer.classList.contains('blur')
@@ -201,25 +247,8 @@ class Sights{
                     })
                 })
 
-                const scapeCardImage = (e) => {
-                    let correctMoment, cardsContainerEl, sightsEl;
-                    
-                    correctMoment = bg.classList.contains('blur') && !bg.parentNode.classList.contains('blur')
-                    cardsContainerEl = document.querySelector('#stg-card')
-                    sightsEl = document.querySelectorAll('.spot')
-
-                    if(e.key === 'Escape' && correctMoment){
-                        bg.classList.remove('blur')
-                        cardsContainerEl.style.display = 'none'
-                        sightsEl.forEach(spot => spot.style.display = 'block')
-                        
-                        this.game.stopCurrentAudio()
-                        gameData.isClickable = true
-                        this.game.playAudio(gameAssets['nature_ambience'], 'nature_ambience', .3, true)
-                    }
-                }
-                document.addEventListener('keyup', scapeCardImage) 
-                this.game.events.push({func: scapeCardImage, elem: document, })
+                document.addEventListener('keydown', scapeCardImage) 
+                this.game.events.push({func: scapeCardImage, elem: document, event: 'keydown'})
                 
 
                 spot.addEventListener('mouseover', () => {
@@ -228,7 +257,6 @@ class Sights{
             })
         })  
     }
-
 
     playAnimalSound(audioBuffer, animalSoundName){
         let src, gainNode;
@@ -274,7 +302,6 @@ class Sights{
     // Retorna o gainNode caso queira manipular o volume desse áudio no futuro
     return {source: src, gainNode: gainNode}
     }
-
     stopAnimalSound(soundName){
         if(soundName in this.game.currentAudio){
             let pausedAt = this.game.currentAudio[soundName].audio.context.currentTime

@@ -19,7 +19,7 @@ class Preloader{
         this.assetsControls = {}
         this.setPreloader()
 
-        document.title = 'Carregando...'
+        document.title = 'Página de carregamento'
         if(!gameData.isDarkMode) document.body.style.backgroundColor = `${colors.bg_light}`
     }
 
@@ -91,7 +91,7 @@ class Preloader{
             progressBar.fillStyle(0xabed3f, 1);
             progressBar.fillRoundedRect((gContainerWidth - (gContainerWidth * .81)) / 2 + gContainerWidth * .01 , gcontainerHeight * .779 + 3.5, (gContainerWidth * .79) * value, 14, 2)
 
-            frog.style.left = `calc(11% + ${76 * value}%)` 
+            frog.style.left = `calc(11% + ${77 * value}%)` 
         })
         
         function criarObjeto(object, key, callback){ // object pode ser retirado e substituido por store(global) internamente na função
@@ -103,6 +103,8 @@ class Preloader{
         })
 
         this.load.on('complete',  () => {
+            let textToReaderEl
+
             audioDataArr.forEach( dataObj => criarObjeto(store, dataObj.name, getAudio(dataObj.name)))
             for(let dataObj of generalImgDtArr){
                 criarObjeto(store, dataObj.name, getImage(dataObj.name))
@@ -110,7 +112,8 @@ class Preloader{
             for(let dataObj of animalsImgDtArr){
                 criarObjeto(store, dataObj.name, getImage(dataObj.name))
             }
-
+            textToReaderEl = document.querySelector('.textToReader')
+            textToReaderEl.textContent = "carregamento concluido"
             this.time.delayedCall(1000, () => {
                 progressBar.destroy()
                 progressBox.destroy()

@@ -94,7 +94,7 @@ const animalsImgDtArr = [
         src: '../Assets/imgs/animals/quati.jpg'
     },
     {
-        name: 'ra-assobiadora',
+        name: 'rã-assobiadora',
         key: 'ra assobiadora',
         src: '../Assets/imgs/animals/ra-assobiadora.jpg'
     },
@@ -104,7 +104,7 @@ const animalsImgDtArr = [
         src: '../Assets/imgs/animals/tucano-de-bico-preto.webp'
     },
     {
-        name: 'muriqui',
+        name: 'macaco-muriqui',
         key: 'muriqui',
         src: '../Assets/imgs/animals/muriqui.jpg'
     },
@@ -114,7 +114,7 @@ const animalsImgDtArr = [
         src: '../Assets/imgs/animals/perereca-verde.jpg'
     },
     {
-        name: 'sabia-laranjeira',
+        name: 'sabiá-laranjeira',
         key: 'sabia laranjeira',
         src: '../Assets/imgs/animals/sabia-laranjeira.jpg'
     },
@@ -129,10 +129,44 @@ const animalsImgDtArr = [
         src: '../Assets/imgs/animals/mico-estrela.jpg'
     },
     {
-        name: 'onca-parda',
+        name: 'onça-parda',
         key: 'onca parda',
         src: '../Assets/imgs/animals/onca-parda.jpg'
     },
+
+
+    {
+        name: 'quero-quero',
+        key: 'quero quero',
+        src: '../Assets/imgs/animals/quero-quero.jpg'
+    },
+    {
+        name: 'cavalo',
+        key: 'cavalo',
+        src: '../Assets/imgs/animals/cavalo.webp'
+    },
+    {
+        name: 'o-galo-e-a-galinha',
+        key: 'o galo e a galinha',
+        src: '../Assets/imgs/animals/o-galo-e-a-galinha.jpg'
+    },
+    {
+        name: 'cachorro',
+        key: 'cachorro',
+        src: '../Assets/imgs/animals/cachorro.jpg'
+    },
+    {
+        name: 'cutia',
+        key: 'cutia',
+        src: '../Assets/imgs/animals/cutia.jpg'
+    },
+    {
+        name: 'a-vaca-e-o-boi',
+        key: 'a vaca e o boi',
+        src: '../Assets/imgs/animals/a-vaca-e-o-boi.jpg'
+    },
+
+
    
 ]
 

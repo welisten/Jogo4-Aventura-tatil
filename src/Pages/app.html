@@ -11,11 +11,11 @@
     <!-- textFit -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/textfit/2.4.0/textFit.min.js"></script>
     <!-- JS -->
-    <script type="module" src="../JavaScript/pre.js"></script>
-    <script src="../JavaScript/vlBeauty.js"></script>
+    <script type="module" src="./../JavaScript/pre.js"></script>
+    <script src="./../JavaScript/vlBeauty.js"></script>
     <!-- CSS -->
-    <link rel="stylesheet" href="../Style/style.css">
-    <link rel="stylesheet" href="../Style/preload.css">
+    <link rel="stylesheet" href="./../Style/style.css">
+    <link rel="stylesheet" href="./../Style/preload.css">
     <style>
                                                 /* resolver aqui */
         .access{
@@ -92,57 +92,64 @@
         <div class="loading" id="loading">
             <img src="./../Assets/imgs/general/foreground.svg" class="foreground svg" alt="floresta com arvores, troncos, planices">
             <img src="./../Assets/imgs/general/logo.png" class="logo" alt="logo do jogo">
-            <img src="./../Assets/imgs/general/backgroundMountain.svg" class="backgroundMountain vsg" alt="">
+            <img src="./../Assets/imgs/general/backgroundMountain.svg" class="backgroundMountain svg" alt="montanhas banhadas pelo sol">
             <img src="./../Assets/imgs/general/monkey_left.gif" class="m_l" alt="macaco pendurado no cipó">
             <img src="./../Assets/imgs/general/monkey_right.gif" class="m_r" alt="macaco pendurado no galho">
             <img src="./../Assets/imgs/general/leavesfall.gif" class="leaves" alt="folhas caindo">
             <img src="./../Assets/imgs/general/frog.gif" class="frog" alt="sapo">
         </div>
+
+        <div id="toTextReader" class="toReader" >
+            <p class="textToReader" aria-live="assertive"></p>
+        </div>
+
         <div id="game_container" class="inactive">
             
             <div id="main" class="container"></div>
             <div class="gameControls container">
-                <button class="btn controls" id="muteBtn"><i class="fa-solid fa-volume-high"></i></button>
-                <button class="btn controls" id="lightBtn"><i class="fa-regular fa-sun"></i></button>
-                <button class="btn controls" id="infoBtn"><i class="fa-solid fa-info"></i></button>
+                <button class="btn controls" id="muteBtn" title ="Som do jogo" aria-label="alternar som"><i class="fa-solid fa-volume-high"></i></button>
+                <button class="btn controls" id="lightBtn" title ="Modo de iluminação" aria-label="alternar iluminação"><i class="fa-regular fa-sun"></i></button>
+                <button class="btn controls" id="infoBtn" title ="Instruções" aria-label="instruções"><i class="fa-solid fa-circle-info"></i></button>
+                <button class="btn controls" id="accessBtn" title ="Acessibilidade" aria-label="alternar accessibilidade" ><i class="fa-regular fa-eye"></i></button>
             </div>
             <div id="j4-bg" class="j4-bg"></div>
             <div id="info" class="info">
                 <div class="title container">
-                    <p class="t-text">Bem-vindo à plataforma: Explora Guapimirim !</p>
+                    <p class="t-text" tabindex="1">Bem-vindo à plataforma: Explorando Guapimirim !</p>
                 </div>
                 <div class="body container">
-                    <p class="i-b0">Nesta plataforma, você vai explorar as riquezas naturais de Guapimirim, visitando lugares especiais e encontrando animais escondidos.<br><br>Como funciona:</p>
+                    <p class="i-b0" tabindex="2">Nesta plataforma, você vai explorar as riquezas naturais de Guapimirim,<br> visitando lugares especiais e encontrando animais escondidos.<br>Como funciona:</p>
                     <div class="board i-b1">
-                        <p>
-                            1. Explorando os lugares:<br><br>Você vai começar escolhendo um local da lista de pontos turísticos de Guapimirim. Cada lugar é único e tem muitas coisas para explorar.
+                        <p tabindex="3">
+                            <span>1</span>- Explorando os lugares.<br>Você vai começar escolhendo um local da lista de pontos turísticos de Guapimirim. Cada lugar é único e tem muitas coisas para explorar.
                         </p>
-                        <p>
-                            2. Encontrando os animais:<br><br>Dentro de cada local, existem seis animais escondidos. Use o mouse ou a navegação do teclado (TAB) para encontrar esses animais na tela. Se você usar um leitor de tela, as teclas TAB, ESC e ENTER irão ajudar a navegar melhor entre os animais.
+                        <p tabindex="4">
+                            <span>2</span>- Encontrando os animais.<br>Dentro de cada local, existem seis animais escondidos. Use o mouse ou a navegação do teclado (TAB) para encontrar esses animais na tela. Se você estiver com accessibilidade ativa, as teclas TAB, ESC e ENTER irão ajudar a navegar melhor entre os animais.
                         </p>
-                        <p>
-                            3. Interagindo com os animais:<br><br>Ao encontrar um animal, clique nele para abrir um card. Neste card, você verá:<br><br>
-                            <ul>
-                                <li>Como esse animal se chama.</li>
-                                <li>Uma foto desse animal.</li>
-                                <li>Um botão para ouvir o som que esse animal faz.</li>
-                            </ul>
+                        <p tabindex="5">
+                            <span>3</span>- Interagindo com os animais.<br>Ao encontrar um animal, clique nele para abrir um cartão. Neste cartão, você verá :<br>
+                            <div class="list">
+                                <p tabindex="6" class="listItems">1º - Como esse animal se chama.</p>
+                                <p tabindex="7" class="listItems">2º - Uma foto desse animal.</p>
+                                <p tabindex="8" class="listItems">3º - Um botão para ouvir o som que esse animal faz.</p>
+                                <p tabindex="9" class="listItems">4º - Uma descrição desse animal.</p>
+                            </div>
                         </p>
                     </div>
                     <div class="board i-b2">
-                        <p>
-                            Ao clicar na foto do animal, ela vai aumentar, ocupando toda a tela para que você veja com mais detalhes.
+                        <p tabindex="10">
+                            Ao clicar na foto do animal, ela vai aumentar, ocupando toda a tela para que você a perceba com mais detalhes.
                         </p>
-                        <p>
-                            4. Leitor de tela:<br><br>
-                            Se você estiver usando um leitor de tela, o jogo irá se integrar ao leitor proporcionando uma experiência mais divertida
+                        <p tabindex="11">
+                            <span>4</span>- Leitor de tela.<br>
+                            Se você estiver usando um leitor de tela, ou seja, o botão de accessibilidade estiver ativo, o jogo irá se integrar ao leitor proporcionando uma experiência mais divertida e completa
                         </p>
-                        <p>6. Atalhos:<br><br>
-                            <ul>
-                                <li>Para voltar ou sair de uma seção da tela, use o botão "Esc" como atalho rápido.</li>
-                                <li>Para navegar entre os elementos, use o botão “Tab” como atalho rápido.</li>
-                                <li>Para selecionar um elemento em foco, use o botão.</li>
-                            </ul>
+                        <p tabindex="12"><span>5</span>- Atalhos.<br>
+                            <div class="list">
+                                <p tabindex="13" class="listItems">1º - Para voltar ou sair de uma seção da tela, use o botão "ESC" como atalho rápido.</p>
+                                <p tabindex="14" class="listItems">2º - Para navegar entre os elementos, use o botão “TAB” como atalho rápido.</p>
+                                <p tabindex="15" class="listItems">3º - Para selecionar um elemento em foco, use o botão "ENTER".</p>
+                            </div>
                         </p>
                     </div>
                 </div>
@@ -150,7 +157,7 @@
                 <img src="./../Assets/imgs/general/sttcloud.png" class="static-cloud sc2" alt="nuvem">
                 <img src="./../Assets/imgs/general/sttcloud.png" class="static-cloud sc3" alt="nuvem">
                 <img src="./../Assets/imgs/general/sttcloud.png" class="static-cloud sc4" alt="nuvem">
-                <button class="closeBtn btn" id="t-close"><i class="fa-solid fa-xmark"></i></button>
+                <button class="closeBtn btn" id="t-close" tabindex="16" aria-label="Fechar instruções"><i class="fa-solid fa-xmark"></i></button>
             </div>
         </div>
     </div>

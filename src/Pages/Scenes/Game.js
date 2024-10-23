@@ -1,6 +1,8 @@
 import { gameData } from "../../Constants/gameData.js";
+
 import { colors } from "../../Constants/Colors.js";
 import { Sights } from "./Sights.js";
+import { sightData } from "../../Constants/sightsData.js";
 
 
 class Game {
@@ -9,6 +11,7 @@ class Game {
         this.element = document.querySelector('#game_container')
         this.element.classList.add('j4-hm')
         this.events = []
+        this.sights = ['cutia', 'apa', 'concordia']
        
         this.currentAudio = {
             default: {
@@ -23,7 +26,7 @@ class Game {
         // this.gainNode = this.audioContext.createGain()
         this.frogTimer = undefined
 
-        document.title = ' Vamos Explorar Guapimirim!'
+        document.title = 'Vamos Explorar Guapimirim!'
         gameData.mainScene = 'Game'
         
         this.setSettingsControllers()
@@ -35,6 +38,7 @@ class Game {
         const muteBtn = document.querySelector('#muteBtn')
         const lightBtn = document.querySelector('#lightBtn')
         const infoBtn = document.querySelector('#infoBtn')
+        const accessBtn = document.querySelector('#accessBtn')
         const closeBtn = document.querySelector('#t-close')
 
         setIcons()
@@ -51,20 +55,45 @@ class Game {
                 const main = document.querySelector('#main')
                 const j4Bg = document.querySelector('#j4-bg')
                 const info = document.querySelector('#info')
-                let titleText, board1Text, board2Text;
-    
+                
+                let titleText, board0_text;
                 titleText = document.querySelector('.t-text')
+                board0_text = document.querySelector('.i-b0')
                 
                 main.classList.toggle('blur')
                 j4Bg.classList.toggle('blur')
                 info.classList.toggle('active')
-                textFit(titleText)
-                textFit(board1Text)
-                textFit(board2Text)
                 
+                titleText.focus()
+
+                textFit(titleText)
+                textFit(board0_text)
         })
 
+        accessBtn.addEventListener('click', () => {
+            accessBtn.classList.toggle('active')
+            gameData.isAccess = !gameData.isAccess
+
+            accessBtn.children[0].classList.toggle('fa-regular')
+            accessBtn.children[0].classList.toggle('fa-solid')
+            
+            if(accessBtn.classList.contains('active')){
+                this.readText('O modo acessível foi ativado')
+            } else {
+                this.readText('O modo acessível foi desativado')
+            }
+        })
+
+
         closeBtn.addEventListener('click', () => {
+            let choiceReq = document.querySelector('.hm-b-title')
+            
+            
+            if(gameData.isAccess){
+                this.readText('seção de instruções fechada.');
+                if(choiceReq) setTimeout(() => choiceReq.focus(), 50)
+            }
+            
             const main = document.querySelector('#main')
             const j4Bg = document.querySelector('#j4-bg')
             const info = document.querySelector('#info')
@@ -73,6 +102,53 @@ class Game {
             j4Bg.classList.toggle('blur')
             info.classList.toggle('active')
         })
+    
+        const closeInstruc = (e) => {
+            let choiceReq, info;
+
+            info = document.querySelector('#info')
+            choiceReq = document.querySelector('.hm-b-title')
+
+            if(e.key === 'Escape' && info.classList.contains('active'))
+            {
+                if(gameData.isAccess){
+                    this.readText('seção de instruções fechada.');
+                    if(choiceReq) setTimeout(() => choiceReq.focus(), 50)
+                    
+                }
+
+                const main = document.querySelector('#main')
+                const j4Bg = document.querySelector('#j4-bg')
+                const info = document.querySelector('#info')
+    
+                main.classList.toggle('blur')
+                j4Bg.classList.toggle('blur')
+                
+                info.classList.toggle('active')
+            } 
+        }
+
+        const clickOutElement = (e, elem) => {
+            if(!elem.classList.contains('active')) return;
+            if(!e || !elem) throw new Error('Evento ou elemento não fornecido')
+
+            let elemClicked, main, j4Bg;
+            
+            elemClicked = e.target
+            main = document.querySelector('#main')
+            j4Bg = document.querySelector('#j4-bg')
+
+            if(!elem.contains(elemClicked)){
+                main.classList.toggle('blur')
+                j4Bg.classList.toggle('blur')
+                elem.classList.toggle('active')
+            } 
+        }
+
+
+        const info = document.querySelector('#info')        
+        document.addEventListener('mouseup', (e) => clickOutElement(e, info))
+        document.addEventListener('keyup', closeInstruc)
 
         function setIcons(){
             if(gameData.isMute){
@@ -94,7 +170,7 @@ class Game {
         this.setContainersElms()
 
         this.playAudio(gameAssets['frog_croaking'], 'frog_croaking', .1)
-        
+        this.readText("seja bem vindo ao Jogo 4", false)
         setTimeout(() =>{
             this.playAudio(gameAssets['theme_main'], 'theme_main', 0.05, true)
             this.frogTimer = setInterval(() => this.playAudio(gameAssets['frog_croaking'], 'frog_croaking', .1), 6000)
@@ -108,68 +184,93 @@ class Game {
 
         const hmContainer = this.createNewElement('div', 'hm-container container')
         const hm_c_title = this.createNewElement('div', 'hm-c-title container')
-        const hm_title = this.createNewElement('p')
+        const hm_title = this.createNewElement('p', 'h-t-text')
 
         hm_title.innerHTML = 'Vamos Explorar'
+        hm_title.setAttribute('tabindex', '17')
 
         hm_c_title.appendChild(hm_title)
         hmContainer.appendChild(hm_c_title)
 
 
-        const hmTable = this.createNewElement('table', 'hm-table')
-        const hmThead = this.createNewElement('thead', 'hm-thead')
-        const hmTh = this.createNewElement('th', 'hm-t')
+        const hmBoard = this.createNewElement('div', 'hm-board')
+        const hmBhead = this.createNewElement('div', 'hm-b-head')
+        const hmBHTitle = this.createNewElement('p', 'hm-b-title')
         
-        hmTh.innerHTML = 'escolha o local'
-        hmThead.appendChild(hmTh)
+        hmBHTitle.innerHTML = 'escolha o local'
+        hmBHTitle.setAttribute('tabindex', '18')
+        hmBHTitle.setAttribute('aria-live', 'polite')
 
-        const hmTbody = this.createNewElement('tbody', 'hm-tbody')
-        const hmTr1 = this.createNewElement('tr', 'hm-tr')
-        const hmTd1 = this.createNewElement('td', 'hm-td')
-        
-        hmTd1.innerHTML = 'concordia'
-        hmTr1.appendChild(hmTd1)
+        hmBhead.appendChild(hmBHTitle)
 
-        const hmTr2 = this.createNewElement('tr', 'hm-tr')
-        const hmTd2 = this.createNewElement('td', 'hm-td')
+        const hmBBody = this.createNewElement('div', 'hm-b-body')
         
-        hmTd2.innerHTML = 'apa'
-        hmTr2.appendChild(hmTd2)
+        let idxToSight = 19;
 
-        hmTbody.append(hmTr1, hmTr2)
-        hmTable.append(hmThead, hmTbody)
+        for(let sight in sightData){
+            let row = this.createNewElement('div', 'hm-b-r')
+            let data = this.createNewElement('button', 'hm-b-d btn')
+            
+            data.textContent = sight
+            data.setAttribute('tabindex', idxToSight++)
+            data.setAttribute('title', `Ponto Turístico: ${sight.toUpperCase()}`)
+
+            row.appendChild(data)
+            hmBBody.appendChild(row)
+        }
+
+        hmBoard.append(hmBhead, hmBBody)
         
-        hmContainer.appendChild(hmTable)
+        hmContainer.appendChild(hmBoard)
         main.appendChild(hmContainer)
         
         textFit(hm_title)
     }
     setContainersElms(){
         // CONFIGURAR OS BOTÕES DO MENU E QUALQUER OUTRO ELEMENTO DA TELA
-        const cPointsArr = document.querySelectorAll('.hm-td')
+        const cPointsArr = document.querySelectorAll('.hm-b-d')
         let txContent;
 
         cPointsArr.forEach( point => {
             point.addEventListener('click', (e) => {
-                txContent = e.target.textContent 
-                switch(txContent){
-                    case 'concordia':
+                if(!gameData.isClickable) return
 
-                        this.resetContainerToNewScene()
-                        new Sights(this, 'concordia')
-                        break;
+                gameData.isClickable = false
+                txContent = e.target.textContent
 
-                    case 'apa':
+                this.stopCurrentAudio()
+                this.playAudio(gameAssets['car_acceleration'])
 
-                        this.resetContainerToNewScene()
-                        new Sights(this, 'apa')
-                        break;
+                setTimeout(() => {
+                    this.playAudio(gameAssets['car_horn'])
+                    this.readText('chegamos em')
+                    setTimeout(() => {
+                        switch(txContent){
+                            case 'concordia':
+        
+                                this.resetContainerToNewScene()
+                                new Sights(this, 'concordia')
+                                break;
+        
+                            case 'apa':
+        
+                                this.resetContainerToNewScene()
+                                new Sights(this, 'apa')
+                                break;
 
-                    default:
-
-                        console.log('fase inexistente')
-                        break;
-                }
+                            case 'cotia':
+        
+                                this.resetContainerToNewScene()
+                                new Sights(this, 'cotia')
+                                break;
+        
+                            default:
+        
+                                console.log('fase inexistente')
+                                break;
+                        }
+                    }, 500)
+                }, 1800)
 
             })
            
@@ -193,32 +294,52 @@ class Game {
 
         main.innerHTML = " "
         this.element.className = clss;
+        this.currentAudio = {}
         this.stopCurrentAudio()
         this.events.forEach(e => e.elem.removeEventListener(e.event, e.func))
     }
 
+    readText(text, urgenci = true){  
+        let textToReaderEl;
+        textToReaderEl = document.querySelector('.textToReader')
+
+        if(gameData.lastAccText === text){
+            text += "."
+        }
+
+        if(!urgenci){
+            textToReaderEl.setAttribute('aria-live', "polite")
+            textToReaderEl.textContent  = `${text}`
+        } else {
+            textToReaderEl.setAttribute('aria-live', "assertive")
+            textToReaderEl.textContent  = `${text}`
+        } 
+        gameData.lastAccText = text
+    }  
     playAudio(audioBuffer, audioName = undefined, volume = 1.0, loop = false ){   
             const src = this.audioContext.createBufferSource()
             const gainNode = this.audioContext.createGain()
 
             src.buffer = audioBuffer
             src.loop = loop
-    
-            const vl = gameData.isMute === true ? 0 : volume
+
+            let accessibleVolume = gameData.isAccess ? 1 : volume
+
+            const vl = gameData.isMute === true ? 0 : accessibleVolume
             gainNode.gain.value = vl
             
             src.connect(gainNode)
             gainNode.connect(this.audioContext.destination)
+
             if(loop === false){
                 src.start()
-    
             } else {
                 if(audioName in this.currentAudio){
                     src.start(0, this.currentAudio[audioName].config.startTime)
                     this.currentAudio[audioName].audio = src
                 } else {
                     src.start(0, 0)
-                    this.currentAudio[audioName] = {config:{startTime: 0, pausedAt: undefined, gainNode: gainNode, volume: volume}}
+                    this.currentAudio[audioName] = {config:{startTime: 0, pausedAt: undefined, gainNode: gainNode, volume: accessibleVolume}}
                     this.currentAudio[audioName].audio = src
                 }
             }
@@ -247,17 +368,19 @@ class Game {
         if(gameData.isDarkMode){
             // transformar em light
             document.body.style.background = `#ddd`
+            if(gameData.isAccess) this.readText('Jogando no modo diurno')
 
         } else {
             // transformar em dark
             document.body.style.background = `${colors.bg_dark}`
+            if(gameData.isAccess) this.readText('Jogando no modo noturno')
+
         }
         btn.children[0].classList.toggle('fa-sun')
         btn.children[0].classList.toggle('fa-moon')
         gameData.isDarkMode = ! gameData.isDarkMode
     }
     toggleVolume(){
-        // this.gainNode.gain.value == 1 ? this.gainNode.gain.value = 0 : this.gainNode.gain.value = 1
         for(let audio in this.currentAudio){
             let gain;
             if( this.currentAudio[audio].config.gainNode) {
@@ -268,17 +391,25 @@ class Game {
             }  
         }
             
-            
         muteBtn.children[0].classList.toggle('fa-volume-xmark')
         muteBtn.children[0].classList.toggle('fa-volume-high')
 
         gameData.isMute = !gameData.isMute
+        if(!gameData.isAccess){
+            return
+        } else {
+            if(gameData.isMute){
+                this.readText('Som do jogo desativado')
+            } else {
+                this.readText('Som do jogo ativado')
+            }
+        }
     }
 
     getImage(key){
         return gameAssets[key]
     }
-    createNewElement(el, cl = undefined, id = undefined, src = undefined){
+    createNewElement(el, cl = undefined, id = undefined, src = undefined, text = null){
         const element = document.createElement(el)
 
         if(cl){
@@ -289,6 +420,7 @@ class Game {
         } 
         if(id)  element.setAttribute('id', id);
         if(src) element.setAttribute('src', src);
+        if(text && typeof text === 'string') element.textContent = text
 
         return element
     }
@@ -317,7 +449,7 @@ class Game {
 
         const foreground = this.getImage('foreground')
         foreground.className = "foreground svg"
-        foreground.setAttribute('alt', "floresta com arvores, troncos, planices")
+        foreground.setAttribute('alt', "floresta ilustrada")
 
         const monkeyLeft = this.getImage('monkey_left')
         monkeyLeft.className = "m_l monkey"
@@ -329,19 +461,27 @@ class Game {
 
         const homeGif = this.getImage('home_gif')
         homeGif.className = "homeGif"
-        homeGif.setAttribute('alt', 'casa')
+        homeGif.setAttribute('alt', 'página inicial')
 
         const homeBtnEl = this.createNewElement('button', 'btn bg-homeBtn', 'homeBtn')
+        homeBtnEl.setAttribute('tabindex', '22')
+        homeBtnEl.setAttribute('title', 'Página Inicial ')
         homeBtnEl.appendChild(homeGif)
 
         homeBtnEl.addEventListener('click', () => {
-            if(!gameData.isClickable ||  gameData.mainScene === 'Game') return
-            this.resetContainerToNewScene('j4-hm')
-            
-            gameData.mainScene = 'Game'
-            bgEle.style.backgroundImage = "url('./../Assets/imgs/general/hm_background.png')"
+            if(!gameData.isClickable || gameData.mainScene === 'Game'){
+                if(gameData.isAccess) this.readText('Você já está na página Inicial')
+                return  
+            } else {
+                this.resetContainerToNewScene('j4-hm')
+                
+                gameData.mainScene = 'Game'
+                document.title = ' Vamos Explorar Guapimirim!'
 
-            this.start(true)
+                bgEle.style.backgroundImage = "url('./../Assets/imgs/general/hm_background.png')"
+    
+                this.start(true)
+            }
         })
 
         homeBtnEl.addEventListener('mouseenter', () => {
