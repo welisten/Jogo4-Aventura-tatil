@@ -40,6 +40,9 @@ class Game {
         const infoBtn = document.querySelector('#infoBtn')
         const accessBtn = document.querySelector('#accessBtn')
         const closeBtn = document.querySelector('#t-close')
+        const info = document.querySelector('#info')        
+        const i_navBtns = document.querySelectorAll('.i-navBtn')
+        const i_body = document.querySelectorAll('.i-body')
 
         setIcons()
 
@@ -56,9 +59,9 @@ class Game {
                 const j4Bg = document.querySelector('#j4-bg')
                 const info = document.querySelector('#info')
                 
-                let titleText, board0_text;
+                let titleText, subtitleText;
                 titleText = document.querySelector('.t-text')
-                board0_text = document.querySelector('.i-b0')
+                subtitleText = document.querySelector('.sub-tex')
                 
                 main.classList.toggle('blur')
                 j4Bg.classList.toggle('blur')
@@ -67,7 +70,6 @@ class Game {
                 titleText.focus()
 
                 textFit(titleText)
-                textFit(board0_text)
         })
 
         accessBtn.addEventListener('click', () => {
@@ -103,34 +105,47 @@ class Game {
             info.classList.toggle('active')
         })
     
-        const closeInstruc = (e) => {
+        const keyboardInInstruc = (e) => {
             let choiceReq, info;
 
             info = document.querySelector('#info')
             choiceReq = document.querySelector('.hm-b-title')
 
-            if(e.key === 'Escape' && info.classList.contains('active'))
+            if(info.classList.contains('active'))
             {
-                if(gameData.isAccess){
-                    this.readText('seção de instruções fechada.');
-                    if(choiceReq) setTimeout(() => choiceReq.focus(), 50)
+                switch (e.key) {
+                    case 'Escape':
+                        if(gameData.isAccess){
+                            this.readText('seção de instruções fechada.');
+                            if(choiceReq) setTimeout(() => choiceReq.focus(), 50)
+                            
+                        }
+        
+                        const main = document.querySelector('#main')
+                        const j4Bg = document.querySelector('#j4-bg')
+                        const info = document.querySelector('#info')
+            
+                        main.classList.toggle('blur')
+                        j4Bg.classList.toggle('blur')
+                        
+                        info.classList.toggle('active')
+                        break;
+                    case 'ArrowLeft':
+                    case 'ArrowRight':
+                        if(gameData.isAccess) return;
+                        toggleInfoSections(e)
+                        break;
                     
+                    default:
+                        break;
                 }
-
-                const main = document.querySelector('#main')
-                const j4Bg = document.querySelector('#j4-bg')
-                const info = document.querySelector('#info')
-    
-                main.classList.toggle('blur')
-                j4Bg.classList.toggle('blur')
-                
-                info.classList.toggle('active')
             } 
         }
 
-        const clickOutElement = (e, elem) => {
-            if(!elem.classList.contains('active')) return;
+        const clickOutElement = (e) => {
+            let elem = document.querySelector('#info')
             if(!e || !elem) throw new Error('Evento ou elemento não fornecido')
+            if(!elem.classList.contains('active')) return;
 
             let elemClicked, main, j4Bg;
             
@@ -145,10 +160,19 @@ class Game {
             } 
         }
 
+        const toggleInfoSections = (e) => {
+            let infoTheme = document.querySelector('.sub-text')
 
-        const info = document.querySelector('#info')        
-        document.addEventListener('mouseup', (e) => clickOutElement(e, info))
-        document.addEventListener('keyup', closeInstruc)
+            i_body.forEach(container => container.classList.toggle('active'))
+            if(gameData.isAccess) infoTheme.focus()
+        }
+        
+        i_navBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => toggleInfoSections(btn))
+        })
+        
+        document.addEventListener('mouseup', (e) => clickOutElement(e))
+        document.addEventListener('keyup', (e) => keyboardInInstruc(e))
 
         function setIcons(){
             if(gameData.isMute){
