@@ -57,12 +57,24 @@ class Game {
         infoBtn.addEventListener('click', () => {
                 const main = document.querySelector('#main')
                 const j4Bg = document.querySelector('#j4-bg')
-                const info = document.querySelector('#info')
+                let titleText, subtitleText, body_iGame, body_iProposal;
                 
-                let titleText, subtitleText;
+                if(info.classList.contains("active")){
+                    return
+                }
+
                 titleText = document.querySelector('.t-text')
                 subtitleText = document.querySelector('.sub-tex')
+                body_iGame = document.querySelector('.body-g')
+                body_iProposal = document.querySelector('.body-p')
                 
+                if(gameData.mainScene === 'Game' ){
+                    body_iProposal.classList.add('active')
+                    body_iGame.classList.remove('active')  
+                } else {
+                    body_iProposal.classList.remove('active')
+                    body_iGame.classList.add('active') 
+                }
                 main.classList.toggle('blur')
                 j4Bg.classList.toggle('blur')
                 info.classList.toggle('active')
@@ -70,6 +82,7 @@ class Game {
                 titleText.focus()
 
                 textFit(titleText)
+                console.log('Classes do info após a manipulação:', info.classList);
         })
 
         accessBtn.addEventListener('click', () => {
@@ -147,13 +160,14 @@ class Game {
             if(!e || !elem) throw new Error('Evento ou elemento não fornecido')
             if(!elem.classList.contains('active')) return;
 
-            let elemClicked, main, j4Bg;
+            let elemClicked, main, j4Bg, gameControls;
             
             elemClicked = e.target
             main = document.querySelector('#main')
             j4Bg = document.querySelector('#j4-bg')
+            gameControls = document.querySelector('.gameControls')
 
-            if(!elem.contains(elemClicked)){
+            if(!elem.contains(elemClicked) && !gameControls.contains(elemClicked)){
                 main.classList.toggle('blur')
                 j4Bg.classList.toggle('blur')
                 elem.classList.toggle('active')
