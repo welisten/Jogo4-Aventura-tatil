@@ -25,6 +25,7 @@ class Game {
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)()//rever propriedade do obj
         // this.gainNode = this.audioContext.createGain()
         this.frogTimer = undefined
+        this.isTimeToChangeInstruc = false
 
         document.title = 'Vamos Explorar Guapimirim!'
         gameData.mainScene = 'Game'
@@ -82,7 +83,6 @@ class Game {
                 titleText.focus()
 
                 textFit(titleText)
-                console.log('Classes do info após a manipulação:', info.classList);
         })
 
         accessBtn.addEventListener('click', () => {
@@ -117,12 +117,16 @@ class Game {
             j4Bg.classList.toggle('blur')
             info.classList.toggle('active')
         })
-    
+        
+
         const keyboardInInstruc = (e) => {
-            let choiceReq, info;
+            let choiceReq, info, latest_p, isActiveElementsInLatestP;
 
             info = document.querySelector('#info')
             choiceReq = document.querySelector('.hm-b-title')
+            latest_p= document.querySelectorAll('.last_p')
+            isActiveElementsInLatestP = Array.from(latest_p).some( p => p === (document.activeElement))
+
 
             if(info.classList.contains('active'))
             {
@@ -149,6 +153,19 @@ class Game {
                         toggleInfoSections(e)
                         break;
                     
+                    case 'Tab':
+                        if(!isActiveElementsInLatestP && !this.isTimeToChangeInstruc){
+                            return
+                        } else {
+                            if(this.isTimeToChangeInstruc){
+                                toggleInfoSections(e)
+                                this.isTimeToChangeInstruc = false
+                                return
+                            }
+                            if(isActiveElementsInLatestP) this.isTimeToChangeInstruc = true
+                        }
+                        break
+
                     default:
                         break;
                 }
@@ -175,10 +192,14 @@ class Game {
         }
 
         const toggleInfoSections = (e) => {
-            let infoTheme = document.querySelector('.sub-text')
+            let infoTheme = document.querySelectorAll('.i-b0')
 
             i_body.forEach(container => container.classList.toggle('active'))
-            if(gameData.isAccess) infoTheme.focus()
+            if(gameData.isAccess){
+                infoTheme.forEach( theme => {
+                    if(theme.style.display !== 'none') theme.focus()
+                })
+            }
         }
         
         i_navBtns.forEach(btn => {
@@ -214,6 +235,7 @@ class Game {
             this.frogTimer = setInterval(() => this.playAudio(gameAssets['frog_croaking'], 'frog_croaking', .1), 6000)
             gameData.isClickable = true
         }, 1000)
+        console.log(gameData)
     }
     buildContainer(){
         this.setMainContainer()
