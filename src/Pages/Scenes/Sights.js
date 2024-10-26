@@ -12,6 +12,8 @@ class Sights{
         this.element.classList.add('j4-sgt')
         this.element.classList.add('sights')
 
+        this.currentSpot = undefined
+
         this.start()
         
         const captalizeStr = (str) => {
@@ -86,12 +88,10 @@ class Sights{
 
 
         sights.forEach((spot, i) => {
-            spot.addEventListener('click', (e) => { 
+            spot.addEventListener('click', (e) => {
+                this.currentSpot =  e.target
                 gameData.isClickable = false
                 this.game.readText(`${this.location.animals[i].nome}`)
-                
-                let currentIndex, elm = e.target;
-                currentIndex = elm.getAttribute('tabindex')
                 
                 bg.classList.add('blur')
                 sights.forEach(spot => spot.style.display = 'none')
@@ -161,7 +161,7 @@ class Sights{
                     }
                 })
 
-                cardCloseBtn.addEventListener('click', () => {
+                cardCloseBtn.addEventListener('click', (e) => {
                     bg.classList.remove('blur')
                     sights.forEach(spot => spot.style.display = 'block')
                     cardsContainer.style.display = 'none'
@@ -169,6 +169,7 @@ class Sights{
                     this.game.stopCurrentAudio()
                     gameData.isClickable = true
                     this.game.playAudio(gameAssets['nature_ambience'], 'nature_ambience', .3, true)
+                    this.currentSpot.focus()
 
                 })
 
@@ -187,6 +188,7 @@ class Sights{
                         this.game.stopCurrentAudio()
                         gameData.isClickable = true
                         this.game.playAudio(gameAssets['nature_ambience'], 'nature_ambience', .3, true)
+                        this.currentSpot.focus()
                     }
                 }
 

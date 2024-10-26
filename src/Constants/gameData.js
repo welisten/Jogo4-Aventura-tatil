@@ -9,7 +9,7 @@ const gameData = {
     isClickable: false,
     isPlayingSound: false,
     lastAccText: '',
-    mainScene: 'Preload',
+    mainScene: 'Preload', // current scene
     wereVLibrasActived: false
 } 
 

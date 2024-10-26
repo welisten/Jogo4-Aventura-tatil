@@ -80,7 +80,7 @@ class Game {
                 j4Bg.classList.toggle('blur')
                 info.classList.toggle('active')
                 
-                titleText.focus()
+                if(gameData.isAccess) titleText.focus();
 
                 textFit(titleText)
         })
@@ -427,7 +427,7 @@ class Game {
 
         if(gameData.isDarkMode){
             // transformar em light
-            document.body.style.background = `#ddd`
+            document.body.style.background = colors.bg_light
             if(gameData.isAccess) this.readText('Jogando no modo diurno')
 
         } else {

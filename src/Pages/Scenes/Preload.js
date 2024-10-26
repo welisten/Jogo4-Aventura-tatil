@@ -45,16 +45,16 @@ class Preloader{
         this.phaserGame = new Phaser.Game(config)               
     }
     preload(){
+        let ruleW;
         const gameCanvas = this.sys.game.canvas
-        let ruleW = window.screen.width > 2000 ? window.screen.width * 0.4  : window.screen.width > 1500 ? window.screen.width * 0.65 : window.screen.width * 0.6
+        
         ruleW = window.screen.width > 2000 ? window.screen.width * 0.4  : window.screen.width > 1500 ? window.screen.width * 0.65 : window.screen.width * 0.6
-
         
         const gContainerWidth  = ruleW        
         const gcontainerHeight  = window.screen.height * 0.613
         
         gameCanvas.id                       = 'jogo4_canvas'
-        gameCanvas.style.border             = `10px solid ${colors.green_logo__1}`;
+        gameCanvas.style.border             = `10px solid ${colors.green_border}`;
         gameCanvas.style.borderRadius       = "20px"
         
         // os assets devem ser armazenado no navegador
@@ -122,7 +122,7 @@ class Preloader{
                 loadingContainer.remove()
                 gameCanvas.remove()
                 
-                gameData.mainClass = 'Game'
+                gameData.mainScene = 'Game'
                 console.clear()
                 new Game()
             })

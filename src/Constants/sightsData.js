@@ -25,7 +25,7 @@ const sightData = {
             {
                 key: 'cachorro', 
                 nome: 'Cachorro', 
-                descri: 'O cachorro é o melhor amigo do homem! Ele é leal, brincalhão e adora correr, brincar e proteger sua família. Quando ele late, pode estar chamando atenção, querendo brincar ou avisando sobre algo. Eles são de várias raças e tamanhos, mas todos têm uma coisa em comum: são companheiros para qualquer aventura.', 
+                descri: 'O cachorro é o melhor amigo do homem. Ele é leal, brincalhão e adora correr, brincar e proteger sua família. Quando ele late, pode estar chamando atenção, querendo brincar ou avisando sobre algo. Eles são de várias raças e tamanhos, mas todos têm uma coisa em comum; são companheiros para qualquer aventura.', 
                 sound: 'cachorro-sound',
                 alt: 'Grupo de cachorros vira-lata'
             },
@@ -39,7 +39,7 @@ const sightData = {
             {
                 key: 'a-vaca-e-o-boi', 
                 nome: 'A Vaca e o Boi', 
-                descri: 'A vaca e o boi são animais grandes e fortes que vivem em fazendas. A vaca é conhecida por nos dar leite, enquanto o boi ajuda no trabalho pesado do campo. Eles são tranquilos, pastando calmamente pela grama. Seu som é baixo e poderoso, um chamado típico do campo, que você pode ouvir à distância.', 
+                descri: 'A vaca e o boi são animais grandes e fortes que vivem em fazendas. A vaca é conhecida por nos dar leite, enquanto o boi ajuda no trabalho pesado do campo. Eles são tranquilos, pastando calmamente pela grama. Seu som é baixo, poderoso e você pode ouvir à distância.', 
                 sound: 'a-vaca-e-o-boi-sound',
                 alt: 'Uma vaca deitada e umboi ao seu lado'
             }
@@ -53,21 +53,24 @@ const sightData = {
             {
                 key: 'macaco-muriqui', 
                 nome: 'Macaco Muriqui', 
-                descri: 'O muriqui é um macaco grandão e muito calmo, considerado o maior macaco das Américas! Ele adora ficar nas árvores e usar seu rabo como uma mão extra para se segurar. O som do muriqui é suave, como se estivesse chamando os outros da sua família com um "uuu, uuu". Eles vivem em grupos, e passam muito tempo juntos, comendo folhas e frutas nas copas das árvores.', 
+                descri: 'O muriqui é um macaco grandão e muito calmo, considerado o maior macaco das Américas! Ele adora ficar nas árvores e usar seu rabo como uma mão extra para se segurar. O som do muriqui é forte, como se estivesse chamando os outros da sua família. Eles vivem em grupos, e passam muito tempo juntos, comendo folhas e frutas nas copas das árvores.', 
                 sound: 'muriqui-sound',
                 alt: 'Um macaco muriqui carregando seu filhote nas costas'
             },
             {
                 key: 'perereca-verde', 
                 nome: 'Perereca Verde', 
-                descri: 'A perereca é um sapinho pequeno e liso. Se você tocasse nela, sentiria a pele úmida e um pouco fria. Ela faz um som alto e engraçado, como um "crii-crii" bem agudo, e gosta de ficar grudada nas folhas.', 
+                descri: `A perereca verde é um bichinho bem pequeno, com uma cor verde viva que ajuda ela a se esconder entre as folhas e galhos das árvores.
+                Ela tem olhos grandes e patas que parecem ventosas, o que ajuda a grudar nas folhas e escalar até os lugares mais altos. As pererecas verdes geralmente ficam acordadas à noite, saltando de galho em galho, e é quando podemos escutar os sons que elas fazem.
+                `, 
                 sound: 'perereca-verde-sound',
                 alt: 'Uma pereca verde'
             },
             {
                 key: 'sabiá-laranjeira', 
                 nome: 'Sabiá Laranjeira', 
-                descri: 'O sabiá-laranjeira é um passarinho que canta bonito, como se estivesse contando uma história. Ele tem penas macias e, se você escutá-lo, parece que ele está fazendo um show, com notas alegres e rápidas.', 
+                descri: `A sabiá-laranjeira é um passarinho muito especial! Ela tem penas clarinhas na barriga e mais escuras nas costas, o que a ajuda a se camuflar entre as árvores. Seu canto é cheio de alegria, com notas que parecem uma melodia, e costuma ecoar bem cedo, ao amanhecer, e também no final da tarde.
+                Esse pássaro gosta de viver em árvores, jardins e até quintais, onde se alimenta de frutinhas e pequenos insetos. Quando a sabiá-laranjeira come frutas e leva as sementes para longe, ela ajuda a plantar novas árvores e a cuidar da natureza.`, 
                 sound: 'sabia-laranjeira-sound',
                 alt: 'Um sabiá laranjeira'
             },
@@ -81,70 +84,76 @@ const sightData = {
             {
                 key: 'mico-estrela', 
                 nome: 'Mico Estrela', 
-                descri: 'Esse macaquinho é bem pequeno e tem pelinhos fofos, com mechas brancas nas orelhas que parecem estrelinhas! Ele é super ágil e vive pulando de galho em galho, adorando frutas e insetos.  O mico-estrela é um dos pequenos acrobatas da floresta, sempre atento e cheio de energia! vivem em grupos e estão sempre se comunicando com esses sons para avisar se há comida por perto ou se algum perigo está chegando. O mico-estrela faz sons rápidos e agudos.', 
-                sound: 'mico-estrela-sound',
+                descri: `O mico-estrela é um macaquinho pequeno e muito ágil, com pelos que parecem formar tufos em volta das orelhas! Ele gosta de pular de galho em galho nas árvores, e vive em bandos com outros micos. Esses macaquinhos são muito curiosos e adoram explorar o que está ao seu redor, especialmente frutas, flores e insetos, que fazem parte de sua alimentação.
+                Além disso, o mico-estrela faz sons como gritos fininhos, que ele usa para se comunicar com os outros da turma. Esses sons ajudam o bando a se manter unido enquanto exploram a floresta!`,
                 alt: 'Um Mico estrela em um tronco'
             },
             {
                 key: 'onça-parda', 
                 nome: 'Onça Parda', 
-                descri: 'A onça-parda é um felino grande e ágil, com pelos curtos e macios, que lembram o toque de um tecido bem liso. Ela é bem silenciosa e esperta, e seus passos quase não fazem barulho, como se estivesse andando em uma cama de algodão. Ela tem patas grandes com garras afiadas, que ajudam a subir em árvores e correr rápido', 
+                descri: `A onça-parda é um animal grande e muito forte, com um corpo musculoso que a ajuda a saltar e correr com agilidade. Ela é conhecida por ser uma excelente caçadora e, apesar de ser um pouco parecida com os gatos, ela vive na natureza e prefere lugares como florestas e montanhas.
+                Essa onça é bem silenciosa quando se movimenta, o que a ajuda a surpreender suas presas. Ela raramente faz barulho, mas, quando precisa, emite sons graves para se comunicar. A onça-parda é um animal solitário e gosta de explorar grandes territórios para encontrar alimento e abrigo.`, 
                 sound: 'onca-parda-sound',
                 alt: 'Uma Onça parda a observar'
             }
         ],
         coordinates:[{x:24,y:20}, {x:36 ,y:60}, {x:40 ,y:40}, {x:57 ,y:25}, {x:73 ,y:60}, {x:75 ,y:10}], 
         background: 'apaBG.jpg',
-        descri: 'A APA de Guapimirim é uma área de proteção ambiental que faz parte de um grande ecossistema chamado Baía de Guanabara, no estado do Rio de Janeiro. Esse lugar é muito importante porque protege uma das maiores áreas de manguezais da região, que são como florestas especiais que crescem na água salgada ou misturada com água doce. Os manguezais são fundamentais porque servem de abrigo para muitos animais, além de ajudarem a filtrar a água e proteger a costa de enchentes e erosões. Ao longo dos anos, a APA tem sido crucial para a conservação desses ambientes naturais. Graças à sua proteção, muitos animais que estavam em risco, conseguiram aumentar sua população. A APA também é usada para estudos científicos sobre a biodiversidade e a importância dos manguezais para a natureza. Ela é um exemplo de como a natureza pode ser preservada, mas precisa da ajuda de todos para continuar linda e cheia de vida. Lá, atividades como passeios de barco e caminhadas nas trilhas ensinam as pessoas sobre a importância de cuidar do meio ambiente, sempre com muito cuidado para não poluir nem destruir os habitats.'
+        descri: `A APA de Guapimirim é uma área especial de proteção no Rio de Janeiro, que faz parte de um ecossistema maior chamado Baía de Guanabara. Esse lugar é muito importante porque protege um tipo de floresta chamado manguezal, que cresce onde a água do mar se mistura com a água doce dos rios. Os manguezais são essenciais, pois são lar de muitos animais e ajudam a filtrar a água e proteger a costa de enchentes e erosões. Graças à proteção da APA, muitos desses animais puderam se recuperar e crescer em número.
+
+        Na APA cientistas estudam as plantas e animais para entender como cuidar melhor desse ambiente. As pessoas também podem aprender sobre a natureza ao fazer passeios de barco e caminhadas nas trilhas, sempre tomando cuidado para não poluir nem prejudicar os habitates. É um exemplo de como é importante proteger a natureza para mantê-la cheia de vida!`
     },
     concordia:{
         animals: [
             {
                 key: 'ben-te-vi', 
                 nome: 'Ben-te-ví', 
-                descri: 'O bem-te-vi é um passarinho muito conhecido pelo seu canto, que parece dizer "bem-te-vi"! Ele tem penas amarelas na barriga e um chapéu preto na cabeça. O som que ele faz é alto e claro, como um "bem-te-vi" bem alegre, e você pode ouvi-lo de longe, especialmente quando ele está no alto de uma árvore ou voando. É como se ele estivesse sempre dizendo "oi" para todo mundo ao redor.', 
+                descri: 'O bem-te-vi é um passarinho muito conhecido pelo seu canto, que parece dizer "bem-te-vi"! Ele tem penas amarelas na barriga e um chapéu preto na cabeça. O som que ele faz é alto, claro e alegre, e você pode ouvi-lo de longe, especialmente quando ele está no alto de uma árvore ou voando. É como se ele estivesse sempre dizendo "oi" para todo mundo ao redor.', 
                 sound: 'bentevi-sound',
                 alt: 'Um Ben-te-ví'
             }, 
             {   
                 key: 'coruja-do-mato', 
                 nome: 'Coruja do mato', 
-                descri: 'A coruja-do-mato é um pássaro noturno, o que quer dizer que ela adora ficar acordada de noite, enquanto a maioria dos outros animais está dormindo. Ela tem olhos grandes que ajudam a enxergar no escuro. Quando ela "canta é como se estivesse chamando alguém na floresta de noite, bem baixinho e misterioso.', 
+                descri: 'A coruja-do-mato é um pássaro noturno, o que quer dizer que ela adora ficar acordada de noite, enquanto a maioria dos outros animais está dormindo. Ela tem olhos grandes que ajudam a enxergar no escuro. Quando ela "canta" é como se estivesse chamando alguém na floresta de noite, bem baixinho e misterioso.', 
                 sound: 'coruja-do-mato-sound',
                 alt: 'Uma Coruja'
             }, 
             {
                 key: 'rã-assobiadora', 
                 nome: 'Rã Assobiadora', 
-                descri: 'Essa rã tem um nome engraçado, porque ela faz um som parecido com um assobio! Você sabia que, à noite, perto de um lago ou um rio, dá pra ouvir muitas rãs e sapos? Mas essa rã é especial, porque seu som é bem fininho e suave, como um assobio de alguém te chamando lá longe.', 
+                descri: 'Essa rã tem um nome engraçado, porque ela faz um som parecido com um assobio! Você sabia que, à noite, perto de um lago ou um rio, dá pra ouvir muitas rãs e sapos ? Mas essa rã é especial, porque seu som é bem fininho e suave, como um assobio de alguém te chamando de longe.', 
                 sound: 'ra-assobiadora-sound',
                 alt: 'Uma Rã assobiadora'
             }, 
             {
                 key: 'tucano-de-bico-preto', 
                 nome: 'Tucano de bico preto', 
-                descri: 'O tucano é um passarão muito colorido, mas esse tem o bico bem escuro, quase preto. Ele gosta de fazer barulhos que parecem uma risada ou um "grog, grog, grog". É engraçado porque, quando ele faz esses sons, parece que está brincando na floresta com os amigos.', 
+                descri: `O tucano-de-bico-preto é uma ave muito curiosa e com um bico bem grande. Seu bico, além de leve, ajuda o tucano a alcançar frutas que estão longe nos galhos das árvores. Ele gosta de se alimentar de frutas, insetos e até alguns pequenos animais.
+                Esse tucano emite sons bem característicos, que parecem pequenas "conversas" para avisar outros tucanos. Com seu visual único e hábitos curiosos, o tucano-de-bico-preto é um verdadeiro explorador da floresta!`, 
                 sound: 'tucano-de-bico-preto-sound',
                 alt: 'Um Tucano de pico preto com uma semente no bico.'
             }, 
             {
                 key: 'quati', 
                 nome: 'Quati', 
-                descri: ' O quati é um animal bem curioso, com um focinho longo e uma cauda grande e felpuda. Ele adora explorar e mexer nas coisas! Se ele estivesse por perto, você ouviria ele remexendo as folhas ou os galhos no chão, sempre procurando comida. Às vezes, eles fazem sons tipo: "rrrrrr", quando estão animados.', 
+                descri: `O quati é um animal curioso e sociável que vive em grupos. Ele tem um corpo alongado, patas curtas e um focinho comprido, que usa para farejar a comida.
+                Esse animal se alimenta de frutas, insetos e pequenos animais, sendo habilidoso em subir em árvores. Ativo durante o dia, o quati faz barulhos para se comunicar e se esconde rapidamente quando se sente ameaçado. É um verdadeiro explorador da natureza!`, 
                 sound: 'quati-sound',
                 alt: 'Um quati'
             }, 
             {
-                key: 'jacutinga', 
-                nome: 'Jacutinga', 
-                descri: 'A jacutinga é um pássaro que gosta de ficar no alto das árvores. Ela tem uma plumagem escura e faz sons parecidos com um "piu-piu-piu", só que mais forte. De manhã, quando tudo está bem calmo, você pode ouvir seu canto ecoando pela floresta, como se estivesse dando "bom dia" para todos os outros bichos.', 
-                sound: 'jacutinga-sound',
-                alt: 'Um casal de jacutinga em um galho'
+                key: 'pica-pau-bufador', 
+                nome: 'Pica Pau Bufador', 
+                descri: `O pica-pau-bufador é uma ave fascinante com um corpo robusto e um bico forte, perfeito para fazer buracos nas árvores. Ele tem penas que parecem uma pintura, com desenhos bem legais que o ajudam a se camuflar entre as folhas e troncos.
+                O pica-pau-bufador se alimenta de insetos e larvas que encontra nas árvores, usando seu bico para cavar e descobrir o que está escondido. Ele é um verdadeiro artista na floresta!`,
+                sound: 'pica-pau-bufador-sound',
+                alt: 'Um pica pau em cima de um galho.'
             } 
         ],
         coordinates:[{x:14,y:15}, {x:13 ,y:64}, {x:29 ,y:78}, {x:55 ,y:55}, {x:72 ,y:86}, {x:74 ,y:20}], 
         background: 'concordiaBG.jpg',
-        descri: "A Cachoeira da Concórdia é uma das cachoeiras mais bonitas de Guapimirim. Ela fica dentro da Serra dos Órgãos, uma área de montanhas com muita vegetação e rios. A cachoeira é especial porque tem quedas d'água que formam piscinas naturais, onde as pessoas podem tomar banho em águas limpas e refrescantes. Essa cachoeira está cercada por mata atlântica, uma floresta cheia de plantas e animais típicos de lá. Ao longo do caminho até a cachoeira, é possível ver muitas árvores grandes, flores coloridas e ouvir os sons de pássaros. Alguns animais que vivem por lá, podem até ser avistados pelos visitantes. A água da Cachoeira da Concórdia é cristalina, e as pedras ao redor das quedas d’água criam um cenário perfeito para quem gosta de natureza. Como está em uma área protegida, as pessoas que visitam são incentivadas a respeitar o ambiente, não deixando lixo e evitando poluir a água. Isso ajuda a manter a beleza natural do lugar. Além de ser um ótimo ponto de lazer, a cachoeira também é importante para o equilíbrio ambiental da região. Ela faz parte dos rios que abastecem áreas próximas e é fundamental para a preservação da mata atlântica e da fauna local. Essa é uma excelente opção para quem quer se conectar com a natureza, aprender sobre a mata e ainda aproveitar um banho de cachoeira em um cenário tranquilo e preservado."
+        descri: "A Cachoeira da Concórdia é uma das cachoeiras mais bonitas de Guapimirim. Ela fica dentro da Serra dos Órgãos, uma área de montanhas com muita vegetação e rios. A cachoeira é especial porque tem quedas d'água que formam piscinas naturais, onde as pessoas podem tomar banho em águas limpas e refrescantes. Essa cachoeira está cercada por mata atlântica, uma floresta cheia de plantas e animais típicos de lá. Ao longo do caminho até a cachoeira, é possível ver muitas árvores grandes, flores coloridas e ouvir os sons de pássaros. Alguns animais que vivem por lá, podem até ser avistados pelos visitantes. A água da Cachoeira da Concórdia é cristalina, e as pedras ao redor das quedas d’água criam um cenário perfeito para quem gosta de natureza. Como está em uma área protegida, as pessoas que visitam são incentivadas a respeitar o ambiente, não deixando lixo e evitando poluir a água. Isso ajuda a manter a beleza natural do lugar. Além de ser um ótimo ponto de lazer, a cachoeira também é importante para o equilíbrio ambiental da região."
     }
 }
 

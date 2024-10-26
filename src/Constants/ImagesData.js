@@ -79,9 +79,9 @@ const animalsImgDtArr = [
         src: '../Assets/imgs/animals/coruja-do-mato.jpg'
     },
     {
-        name: 'jacutinga',
-        key: 'jacutinga',
-        src: '../Assets/imgs/animals/jacutinga.jpeg'
+        name: 'pica-pau-bufador',
+        key: 'pica pau bufador',
+        src: '../Assets/imgs/animals/pica-pau-bufador.jpeg'
     },
     {
         name: 'ben-te-vi',
@@ -133,8 +133,6 @@ const animalsImgDtArr = [
         key: 'onca parda',
         src: '../Assets/imgs/animals/onca-parda.jpg'
     },
-
-
     {
         name: 'quero-quero',
         key: 'quero quero',
@@ -165,9 +163,6 @@ const animalsImgDtArr = [
         key: 'a vaca e o boi',
         src: '../Assets/imgs/animals/a-vaca-e-o-boi.jpg'
     },
-
-
-   
 ]
 
 

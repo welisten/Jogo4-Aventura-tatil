@@ -45,9 +45,9 @@ const audioDataArr = [
         src:'../Assets/songs/animals/coruja-do-mato.mp3'
     },
     {
-        name: 'jacutinga-sound',
-        key: 'jacutinga',
-        src:'../Assets/songs/animals/jacutinga.mp3'
+        name: 'pica-pau-bufador-sound',
+        key: 'pica pau bufador',
+        src:'../Assets/songs/animals/pica-pau-bufador.mp3'
     },
     {
         name: 'bentevi-sound',
